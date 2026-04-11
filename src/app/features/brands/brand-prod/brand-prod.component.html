@@ -1,0 +1,176 @@
+<!-- Hero Banner -->
+<div class="w-full bg-gradient-to-r from-green-600 to-green-400 py-10 px-6 mb-10">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Breadcrumb -->
+    <div class="text-sm text-white/80 mb-6">
+      <a routerLink="/" class="hover:text-white transition-colors">Home</a>
+      <span class="mx-2">/</span>
+      <a routerLink="/brands" class="hover:text-white transition-colors">Brands</a>
+      <span class="mx-2">/</span>
+      <span class="text-white font-medium">{{ brandName() }}</span>
+    </div>
+
+    <!-- Brand Info -->
+    <div class="flex items-center gap-5">
+
+      <!-- Brand Logo Box -->
+      <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-md overflow-hidden">
+        @if (brandImage()) {
+          <img [src]="brandImage()" [alt]="brandName()" class="w-full h-full object-contain p-1" />
+        } @else {
+          <i class="fa-solid fa-tags text-green-500 text-2xl"></i>
+        }
+      </div>
+
+      <div>
+        <h1 class="text-4xl font-extrabold text-white">{{ brandName() }}</h1>
+        <p class="text-white/80 mt-1">Shop {{ brandName() }} products</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Active Filters -->
+<div class="max-w-6xl mx-auto px-6 mb-6">
+  <div class="flex items-center gap-3 flex-wrap">
+    <div class="flex items-center gap-2 text-sm text-gray-500">
+      <i class="fa-solid fa-filter text-gray-400"></i>
+      <span>Active Filters:</span>
+    </div>
+    <span class="flex items-center gap-2 bg-purple-100 text-purple-700 text-sm font-medium px-3 py-1 rounded-full">
+      <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+      {{ brandName() }}
+      <a routerLink="/brands" class="hover:text-purple-900 transition-colors ml-1">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </a>
+    </span>
+    <a routerLink="/brands" class="text-sm text-gray-500 hover:text-gray-700 underline transition-colors">
+      Clear all
+    </a>
+  </div>
+
+  <!-- Products Count -->
+  <p class="text-sm text-gray-500 mt-3">Showing {{ products().length }} products</p>
+</div>
+
+<!-- Products Section -->
+<div class="max-w-6xl mx-auto px-6 pb-16">
+
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      @for (item of [1,2,3,4,5,6,7,8,9,10]; track item) {
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden animate-pulse">
+          <div class="aspect-square bg-gray-200"></div>
+          <div class="p-4 space-y-2">
+            <div class="h-3 bg-gray-200 rounded w-3/4"></div>
+            <div class="h-3 bg-gray-200 rounded w-1/2"></div>
+            <div class="h-4 bg-gray-200 rounded w-1/3 mt-2"></div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Products Grid -->
+  @if (!loading() && products().length > 0) {
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      @for (product of products(); track product._id) {
+        <div class="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all duration-300">
+
+          <!-- Product Image -->
+          <div class="relative aspect-square p-4 bg-white overflow-hidden">
+
+            <!-- Discount Badge -->
+            @if (product.priceAfterDiscount) {
+              <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
+                -{{ getDiscount(product.price, product.priceAfterDiscount) }}%
+              </span>
+            }
+
+            <!-- Action Icons -->
+            <div class="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <button class="w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 text-xs hover:text-red-500 hover:border-red-300 transition-all shadow-sm">
+                <i class="far fa-heart"></i>
+              </button>
+              <button class="w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 text-xs hover:text-green-600 hover:border-green-300 transition-all shadow-sm">
+                <i class="fas fa-sync-alt"></i>
+              </button>
+              <button
+                [routerLink]="['/details', product._id, product.slug]"
+                class="w-8 h-8 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 text-xs hover:text-green-600 hover:border-green-300 transition-all shadow-sm">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+
+            <img
+              [src]="product.imageCover"
+              [alt]="product.title"
+              class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+
+          <!-- Product Info -->
+          <div class="px-4 pb-4">
+
+            <!-- Category -->
+            <p class="text-xs text-gray-400 mb-1">{{ product.category?.name }}</p>
+
+            <!-- Title -->
+            <h3 class="text-sm font-medium text-gray-800 line-clamp-2 mb-2 leading-snug">
+              {{ product.title }}
+            </h3>
+
+            <!-- Rating -->
+            <div class="flex items-center gap-1 mb-3">
+              @for (star of [1,2,3,4,5]; track star) {
+                <i class="fa-star text-xs"
+                  [class]="star <= product.ratingsAverage ? 'fa-solid text-yellow-400' : 'fa-regular text-gray-300'">
+                </i>
+              }
+              <span class="text-xs text-gray-500 ml-1">({{ product.ratingsQuantity }})</span>
+            </div>
+
+            <!-- Price + Add to Cart -->
+            <div class="flex items-center justify-between">
+              <div>
+                @if (product.priceAfterDiscount) {
+                  <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount }} EGP</p>
+                  <p class="text-xs text-gray-400 line-through">{{ product.price }} EGP</p>
+                } @else {
+                  <p class="text-base font-bold text-gray-800">{{ product.price }} EGP</p>
+                }
+              </div>
+
+              <!-- Add to Cart -->
+              <button
+                (click)="addToCart(product.id)"
+              class="w-9 h-9 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow transition-colors duration-300">
+                <i class="fa-solid fa-plus text-sm"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!loading() && products().length === 0) {
+    <div class="flex flex-col items-center justify-center py-24 text-center">
+      <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+        <i class="fa-solid fa-box-open text-gray-400 text-3xl"></i>
+      </div>
+      <h2 class="text-xl font-bold text-gray-700 mb-2">No Products Found</h2>
+      <p class="text-gray-400 mb-6">There are no products available for this brand.</p>
+      <a routerLink="/brands" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-xl font-medium transition-colors duration-300">
+        Back to Brands
+      </a>
+    </div>
+  }
+
+</div>

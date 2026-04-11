@@ -1,0 +1,312 @@
+<div class="hidden border-b border-gray-100 bg-gray-50 py-4 md:block">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 text-xs text-gray-600">
+    <div class="flex items-center gap-4">
+      <span class="flex items-center gap-1"><i class="fas fa-truck text-emerald-600"></i> {{ 'NAV.FREE_SHIPPING' | translate }}</span>
+      <span class="flex items-center gap-1"><i class="fas fa-gift text-emerald-600"></i> {{ 'NAV.NEW_ARRIVALS' | translate }}</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="tel:+18001234567" class="hover:text-emerald-600"><i class="fas fa-phone-alt mr-1"></i> {{ 'NAV.PHONE' | translate }}</a>
+      <a href="mailto:support@freshcart.com" class="hover:text-emerald-600"><i class="fas fa-envelope mr-1"></i> {{ 'NAV.EMAIL' | translate }}</a>
+      <span class="mx-2 text-gray-300">|</span>
+      @if (logged()) {
+        <a routerLink="/login" class="hover:text-emerald-600 hidden md:block"><i class="far fa-user mr-1"></i>{{ userName }}</a>
+        <a (click)="logOut()" class="hover:text-emerald-600 cursor-pointer"><i class="fa-solid fa-right-from-bracket"></i> {{ 'NAV.SIGN_OUT' | translate }}</a>
+      } @else {
+        <a routerLink="/login" class="hover:text-emerald-600 hidden md:block"><i class="far fa-user mr-1"></i>{{ 'NAV.SIGN_IN' | translate }}</a>
+        <a routerLink="/register" class="hover:text-emerald-600"><i class="fas fa-user-plus mr-1"></i> {{ 'NAV.SIGN_UP' | translate }}</a>
+      }
+    </div>
+  </div>
+</div>
+
+<nav class="sticky top-0 z-40 w-full border-b border-gray-100 bg-white px-10 py-4 font-sans">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a routerLink="/" class="shrink-0">
+      <img src="/assets/fresh-logo.svg" alt="FreshCart" class="h-7 md:h-8" />
+    </a>
+
+    <!-- Search -->
+    <div class="hidden lg:block grow max-w-md">
+      <div class="relative">
+        <input
+          type="text"
+          [placeholder]="'NAV.SEARCH_PLACEHOLDER' | translate"
+          class="w-full rounded-full border border-gray-200 bg-gray-50 px-6 py-2 pr-12 outline-none transition-all focus:border-emerald-500 focus:ring-emerald-500"
+        />
+        <button class="absolute right-1 top-1 bottom-1 flex w-9 items-center justify-center rounded-full bg-emerald-600 text-white transition-colors hover:bg-emerald-700">
+          <i class="fas fa-search text-xs"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="hidden items-center gap-6 md:flex">
+      <a routerLink="/" routerLinkActive="text-emerald-600" [routerLinkActiveOptions]="{exact:true}"
+        class="font-medium text-gray-700 transition-colors hover:text-emerald-600">{{ 'NAV.HOME' | translate }}</a>
+
+      <a routerLink="/shop" routerLinkActive="text-emerald-600"
+        class="font-medium text-gray-700 transition-colors hover:text-emerald-600">{{ 'NAV.SHOP' | translate }}</a>
+
+      <!-- Categories Dropdown -->
+      <div class="group relative">
+        <button class="flex items-center gap-1 py-2 font-medium text-gray-700 transition-colors group-hover:text-emerald-600">
+          {{ 'NAV.CATEGORIES' | translate }}
+          <i class="fas fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+        </button>
+        <div class="invisible absolute left-0 z-50 mt-0 w-52 rounded-lg border border-gray-100 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+          <ul class="py-2 text-sm text-gray-700">
+            <li>
+              <a routerLink="/categories" class="block px-4 py-2 hover:bg-emerald-50 hover:text-emerald-600">
+                {{ 'NAV.ALL_CATEGORIES' | translate }}
+              </a>
+            </li>
+            @for (cat of categories(); track cat._id) {
+              <li>
+                <a [routerLink]="['/sub-categories', cat._id]"
+                  class="block px-4 py-2 hover:bg-emerald-50 hover:text-emerald-600">
+                  {{ cat.name }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <a routerLink="/brands" routerLinkActive="text-emerald-600"
+        class="font-medium text-gray-700 transition-colors hover:text-emerald-600">{{ 'NAV.BRANDS' | translate }}</a>
+    </div>
+
+    <!-- Right Side -->
+    <div class="flex items-center gap-2 md:gap-4">
+
+      <!-- Support -->
+      <div class="hidden items-center gap-2 border-r pr-4 lg:flex">
+        <div class="h-9 w-9 flex items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <i class="fas fa-headset"></i>
+        </div>
+        <div class="flex flex-col leading-tight">
+          <span class="text-[10px] text-gray-400 font-bold">{{ 'NAV.SUPPORT_LABEL' | translate }}</span>
+          <span class="text-sm font-bold">{{ 'NAV.SUPPORT_TEXT' | translate }}</span>
+        </div>
+      </div>
+
+      <!-- Language Switcher -->
+      <div class="group relative hidden md:block">
+        <button class="flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-600 hover:border-emerald-300 hover:text-emerald-600 transition-all">
+          <i class="fas fa-globe text-xs"></i>
+          <span>{{ 'NAV.LANGUAGE' | translate }}</span>
+          <i class="fas fa-chevron-down text-[10px] transition-transform group-hover:rotate-180"></i>
+        </button>
+        <div class="invisible absolute right-0 z-50 mt-2 w-36 rounded-xl border border-gray-100 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+          <ul class="py-2 text-sm text-gray-700">
+            <li>
+              <button (click)="changeLan('en')"
+                class="flex w-full items-center gap-2.5 px-4 py-2.5 hover:bg-emerald-50 hover:text-emerald-600 transition-colors font-medium">
+                <span class="text-base">🇺🇸</span> English
+              </button>
+            </li>
+            <li>
+              <button (click)="changeLan('ar')"
+                class="flex w-full items-center gap-2.5 px-4 py-2.5 hover:bg-emerald-50 hover:text-emerald-600 transition-colors font-medium">
+                <span class="text-base">🇸🇦</span> العربية
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Search Mobile -->
+      <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all hover:bg-gray-100 lg:hidden">
+        <i class="fas fa-search text-lg"></i>
+      </button>
+
+      <!-- Wishlist -->
+      <a routerLink="/wishlist" routerLinkActive="text-emerald-600"
+        class="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all hover:bg-gray-100 hover:text-emerald-600">
+        <i class="far fa-heart text-xl"></i>
+        <span class="absolute right-1 top-1 rounded-full border-2 border-white bg-red-700 px-1.5 text-[10px] font-bold text-white">{{countWishList()}}</span>
+      </a>
+
+      <!-- Cart -->
+      <button routerLink="/cart" routerLinkActive="text-emerald-600"
+        class="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all hover:bg-gray-100 hover:text-emerald-600">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <span class="absolute right-1 top-1 rounded-full border-2 border-white bg-emerald-600 px-1.5 text-[10px] font-bold text-white">{{countCart()}}</span>
+      </button>
+
+      @if (logged()) {
+        <!-- User Dropdown -->
+        <div class="group relative hidden sm:block pl-2 md:pl-4">
+          <button class="flex items-center gap-2 rounded-none bg-transparent px-0 py-2.5 text-sm font-bold text-gray-700 transition-all hover:text-emerald-600 border-0 shadow-none cursor-pointer">
+            <div class="flex h-6 w-6 items-center justify-center rounded-full bg-gray-100">
+              <i class="far fa-user text-xs text-gray-600"></i>
+            </div>
+            <span class="hidden md:block">{{ userName }}</span>
+            <i class="fas fa-chevron-down text-[10px] transition-transform duration-200 group-hover:rotate-180"></i>
+          </button>
+
+          <div class="invisible absolute right-0 z-50 mt-2 w-56 rounded-2xl border border-gray-100 bg-white opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+            <div class="flex items-center gap-3 border-b border-gray-100 px-4 py-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 font-bold text-sm">
+                <i class="far fa-user"></i>
+              </div>
+              <p class="font-bold text-gray-900 text-sm">{{ userName }}</p>
+            </div>
+
+            <ul class="py-2 text-sm text-gray-700">
+              <li>
+                <a routerLink="/profile" class="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                  <i class="far fa-user w-4 text-center text-gray-400"></i> {{ 'NAV.MY_PROFILE' | translate }}
+                </a>
+              </li>
+              <li>
+                <a routerLink="/allorders" class="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                  <i class="fas fa-box w-4 text-center text-gray-400"></i> {{ 'NAV.MY_ORDERS' | translate }}
+                </a>
+              </li>
+              <li>
+                <a routerLink="/wishlist" class="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                  <i class="far fa-heart w-4 text-center text-gray-400"></i> {{ 'NAV.MY_WISHLIST' | translate }}
+                </a>
+              </li>
+              <li>
+                <a routerLink="/profile/addresses" class="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                  <i class="fas fa-map-marker-alt w-4 text-center text-gray-400"></i> {{ 'NAV.ADDRESSES' | translate }}
+                </a>
+              </li>
+              <li>
+                <a routerLink="/profile/settings" class="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-emerald-50 hover:text-emerald-600">
+                  <i class="fas fa-cog w-4 text-center text-gray-400"></i> {{ 'NAV.SETTINGS' | translate }}
+                </a>
+              </li>
+            </ul>
+
+            <div class="border-t border-gray-100 p-2">
+              <button (click)="logOut()"
+                class="flex w-full items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-bold text-red-500 transition-colors hover:bg-red-50">
+                <i class="fa-solid fa-right-from-bracket w-4 text-center"></i> {{ 'NAV.SIGN_OUT' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      } @else {
+        <div class="hidden sm:flex items-center pl-2 md:pl-4">
+          <a routerLink="/login" routerLinkActive="!bg-emerald-700"
+            class="flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-emerald-700">
+            <i class="far fa-user"></i> {{ 'NAV.SIGN_IN' | translate }}
+          </a>
+        </div>
+      }
+
+      <!-- Bars Button -->
+      <button (click)="isDrawerOpen = true"
+        class="p-2 text-gray-600 hover:text-emerald-600 md:hidden focus:outline-none transition-colors">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- Overlay -->
+<div
+  (click)="isDrawerOpen = false"
+  [class.opacity-100]="isDrawerOpen"
+  [class.opacity-0]="!isDrawerOpen"
+  [class.pointer-events-auto]="isDrawerOpen"
+  [class.pointer-events-none]="!isDrawerOpen"
+  class="fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 md:hidden"
+></div>
+
+<!-- Drawer -->
+<div
+  [class.translate-x-0]="isDrawerOpen"
+  [class.translate-x-full]="!isDrawerOpen"
+  class="fixed top-0 right-0 z-50 h-screen w-80 overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300"
+>
+  <div class="mb-8 flex items-center justify-between">
+    <img src="/assets/fresh-logo.svg" alt="Logo" class="h-7" />
+    <button (click)="isDrawerOpen = false" class="rounded-full bg-gray-100 p-2 text-gray-400 hover:bg-gray-200">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="relative mb-6">
+    <input type="text" [placeholder]="'NAV.DRAWER_SEARCH' | translate"
+      class="w-full rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-emerald-500" />
+    <button class="absolute right-3 top-2.5 text-emerald-600"><i class="fas fa-search"></i></button>
+  </div>
+
+  <!-- Language Switcher in Drawer -->
+  <div class="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
+    <button (click)="changeLan('en')"
+      class="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition-colors">
+      <span>🇺🇸</span> English
+    </button>
+    <button (click)="changeLan('ar')"
+      class="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition-colors">
+      <span>🇸🇦</span> العربية
+    </button>
+  </div>
+
+  <nav class="mb-1 border-b border-gray-100 pb-2">
+    <ul class="space-y-5 font-medium text-gray-800">
+      <li><a (click)="isDrawerOpen = false" routerLink="/" routerLinkActive="text-emerald-600" [routerLinkActiveOptions]="{exact:true}" class="block transition-colors hover:text-emerald-600">{{ 'NAV.HOME' | translate }}</a></li>
+      <li><a (click)="isDrawerOpen = false" routerLink="/shop" routerLinkActive="text-emerald-600" class="block transition-colors hover:text-emerald-600">{{ 'NAV.SHOP' | translate }}</a></li>
+      <li><a (click)="isDrawerOpen = false" routerLink="/categories" routerLinkActive="text-emerald-600" class="block transition-colors hover:text-emerald-600">{{ 'NAV.CATEGORIES' | translate }}</a></li>
+    </ul>
+  </nav>
+
+  <div class="mb-2 space-y-2">
+    <a (click)="isDrawerOpen = false" routerLink="/wishlist" routerLinkActive="text-emerald-600"
+      class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-gray-50">
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-red-500">
+        <i class="far fa-heart text-lg"></i>
+      </div>
+      <span class="font-medium text-gray-700 group-hover:text-red-600">{{ 'NAV.MY_WISHLIST' | translate }}</span>
+    </a>
+    <a (click)="isDrawerOpen = false" routerLink="/cart" routerLinkActive="text-emerald-600"
+      class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-gray-50">
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+        <i class="fas fa-shopping-cart text-lg"></i>
+      </div>
+      <span class="font-medium text-gray-700 group-hover:text-emerald-600">{{ 'NAV.SHOP' | translate }}</span>
+    </a>
+  </div>
+
+  <div class="space-y-2 border-t border-gray-100 pt-2">
+    @if (logged()) {
+      <a (click)="isDrawerOpen = false" routerLink="/allorders"
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-emerald-50">
+        <div class="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <i class="fas fa-box text-lg"></i>
+        </div>
+        <span class="font-bold text-gray-700 group-hover:text-emerald-600">{{ 'NAV.MY_ORDERS' | translate }}</span>
+      </a>
+      <button (click)="logOut(); isDrawerOpen = false"
+        class="group flex w-full cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-red-50">
+        <div class="flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-red-500">
+          <i class="fa-solid fa-right-from-bracket text-lg"></i>
+        </div>
+        <span class="font-bold text-red-500">{{ 'NAV.SIGN_OUT' | translate }}</span>
+      </button>
+    } @else {
+      <a (click)="isDrawerOpen = false" routerLink="/login" routerLinkActive="text-emerald-600"
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-emerald-50">
+        <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600">
+          <i class="far fa-user text-lg"></i>
+        </div>
+        <span class="font-bold text-gray-700 group-hover:text-emerald-600">{{ 'NAV.SIGN_IN' | translate }}</span>
+      </a>
+      <a (click)="isDrawerOpen = false" routerLink="/register" routerLinkActive="text-emerald-600"
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-emerald-50">
+        <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600">
+          <i class="fas fa-user-plus text-lg"></i>
+        </div>
+        <span class="font-bold text-gray-700 group-hover:text-emerald-600">{{ 'NAV.SIGN_UP' | translate }}</span>
+      </a>
+    }
+  </div>
+</div>

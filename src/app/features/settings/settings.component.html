@@ -1,0 +1,108 @@
+<!-- Header -->
+<div class="mb-6">
+  <h2 class="text-xl font-bold text-gray-900">Account Settings</h2>
+  <p class="text-sm text-gray-500 mt-0.5">Update your profile information and change your password</p>
+</div>
+
+<!-- Profile Information Card -->
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-6">
+
+  <!-- Card Header -->
+  <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+    <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center">
+      <i class="fa-regular fa-user text-emerald-500"></i>
+    </div>
+    <div>
+      <h3 class="font-bold text-gray-900">Profile Information</h3>
+      <p class="text-xs text-gray-500">Update your personal details</p>
+    </div>
+  </div>
+  <!-- Success Message -->
+  @if (isSuccess()) {
+    <div class="flex items-center gap-2 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl px-4 py-3 mb-5 text-sm font-semibold">
+      <i class="fa-solid fa-circle-check"></i>
+      Profile updated successfully!
+    </div>
+  }
+
+  <!-- Form -->
+  <form [formGroup]="profileForm" (ngSubmit)="saveChanges()" class="space-y-5">
+
+    <!-- Full Name -->
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-1.5">Full Name</label>
+      <input
+        formControlName="name"
+        type="text"
+        placeholder="Enter your full name"
+        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all"
+        [class.border-red-300]="profileForm.get('name')?.invalid && profileForm.get('name')?.touched"
+      />
+      @if (profileForm.get('name')?.invalid && profileForm.get('name')?.touched) {
+        <p class="text-xs text-red-500 mt-1">Name is required</p>
+      }
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
+      <input
+        formControlName="email"
+        type="email"
+        placeholder="Enter your email"
+        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all"
+        [class.border-red-300]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched"
+      />
+      @if (profileForm.get('email')?.invalid && profileForm.get('email')?.touched) {
+        <p class="text-xs text-red-500 mt-1">Valid email is required</p>
+      }
+    </div>
+
+    <!-- Phone -->
+    <div>
+      <label class="block text-sm font-semibold text-gray-700 mb-1.5">Phone Number</label>
+      <input
+        formControlName="phone"
+        type="tel"
+        placeholder="01xxxxxxxxx"
+        class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all"
+        [class.border-red-300]="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched"
+      />
+      @if (profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched) {
+        <p class="text-xs text-red-500 mt-1">Phone is required</p>
+      }
+    </div>
+
+    <!-- Submit -->
+    <button
+      type="submit"
+      [disabled]="profileForm.invalid || isLoading()"
+      class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 text-white text-sm font-bold px-6 py-2.5 rounded-xl transition-colors">
+      @if (isLoading()) {
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      } @else {
+        <i class="fa-solid fa-floppy-disk"></i>
+      }
+      Save Changes
+    </button>
+
+  </form>
+</div>
+
+<!-- Account Information Card -->
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+  <h3 class="font-bold text-gray-900 mb-4">Account Information</h3>
+  <div class="divide-y divide-gray-50">
+    <div class="flex items-center justify-between py-3 text-sm">
+      <span class="text-gray-500">User ID</span>
+      <span class="font-medium text-gray-700">{{ userData()?._id ?? '—' }}</span>
+    </div>
+    <div class="flex items-center justify-between py-3 text-sm">
+      <span class="text-gray-500">Role</span>
+      <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full capitalize">
+        {{ userData()?.role ?? 'User' }}
+      </span>
+    </div>
+  </div>
+</div>
+<app-change-password></app-change-password>

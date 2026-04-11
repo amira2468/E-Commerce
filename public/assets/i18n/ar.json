@@ -1,0 +1,188 @@
+{
+  "NAV": {
+    "FREE_SHIPPING": "شحن مجاني للطلبات فوق 500 جنيه",
+    "NEW_ARRIVALS": "وصول يومي لمنتجات جديدة",
+    "PHONE": "+1 (800) 123-4567",
+    "EMAIL": "support@freshcart.com",
+    "SIGN_IN": "تسجيل الدخول",
+    "SIGN_UP": "إنشاء حساب",
+    "SIGN_OUT": "تسجيل الخروج",
+    "SEARCH_PLACEHOLDER": "ابحث عن منتجات...",
+    "HOME": "الرئيسية",
+    "SHOP": "المتجر",
+    "CATEGORIES": "الفئات",
+    "ALL_CATEGORIES": "جميع الفئات",
+    "BRANDS": "الماركات",
+    "SUPPORT_LABEL": "الدعم",
+    "SUPPORT_TEXT": "مساعدة 24/7",
+    "LANGUAGE": "ع",
+    "MY_PROFILE": "ملفي الشخصي",
+    "MY_ORDERS": "طلباتي",
+    "MY_WISHLIST": "المفضلة",
+    "ADDRESSES": "العناوين",
+    "SETTINGS": "الإعدادات",
+    "DRAWER_SEARCH": "ابحث عن منتجات..."
+  },
+  "HOME": {
+    "SLIDE1_BADGE": "🌿 طازج وعضوي",
+    "SLIDE1_TITLE": "منتجات طازجة تُوصل إلى بابك",
+    "SLIDE1_DESC": "احصل على خصم 20% على طلبك الأول",
+    "SLIDE1_BTN": "تسوق الآن ←",
+    "SLIDE2_BADGE": "✨ وصل حديثاً",
+    "SLIDE2_TITLE": "خضروات نادرة وصلت للتو",
+    "SLIDE2_DESC": "اكتشف أحدث مجموعتنا المميزة",
+    "SLIDE2_BTN": "استكشف الآن ←",
+    "SLIDE3_BADGE": "⚡ تخفيضات سريعة",
+    "SLIDE3_TITLE": "عروض يومية لا تفوّتها",
+    "SLIDE3_DESC": "خصم يصل إلى 50% على منتجات مختارة",
+    "SLIDE3_BTN": "اعرض العروض ←",
+    "FEATURE1_TITLE": "شحن مجاني",
+    "FEATURE1_DESC": "على الطلبات فوق 500 جنيه",
+    "FEATURE2_TITLE": "دفع آمن",
+    "FEATURE2_DESC": "معاملات آمنة 100%",
+    "FEATURE3_TITLE": "إرجاع سهل",
+    "FEATURE3_DESC": "سياسة إرجاع 14 يوماً",
+    "FEATURE4_TITLE": "دعم 24/7",
+    "FEATURE4_DESC": "فريق دعم متخصص",
+    "CATEGORIES_TITLE": "تسوق حسب",
+    "CATEGORIES_HIGHLIGHT": "الفئة",
+    "VIEW_ALL_CATEGORIES": "عرض جميع الفئات",
+    "PROMO1_BADGE": "🔥 عرض اليوم",
+    "PROMO1_TITLE": "فواكه عضوية طازجة",
+    "PROMO1_DESC": "احصل على خصم يصل إلى 40% على الفواكه العضوية المختارة",
+    "PROMO1_DISCOUNT": "خصم 40%",
+    "PROMO1_CODE_LABEL": "استخدم كود:",
+    "PROMO1_CODE": "ORGANIC40",
+    "PROMO1_BTN": "تسوق الآن",
+    "PROMO2_BADGE": "✨ وصل حديثاً",
+    "PROMO2_TITLE": "خضروات نادرة",
+    "PROMO2_DESC": "اكتشف أحدث مجموعتنا من الخضروات الفاخرة",
+    "PROMO2_DISCOUNT": "خصم 25%",
+    "PROMO2_CODE_LABEL": "استخدم كود:",
+    "PROMO2_CODE": "FRESH25",
+    "PROMO2_BTN": "استكشف الآن"
+  },
+  "REGISTER": {
+    "WELCOME": "مرحباً بك في",
+    "BRAND": "فريش كارت",
+    "SUBTITLE": "انضم إلى آلاف العملاء السعداء الذين يستمتعون بتوصيل البقالة الطازجة إلى أبوابهم.",
+    "FEATURE1_TITLE": "جودة عالية",
+    "FEATURE1_DESC": "منتجات عالية الجودة من موردين موثوقين.",
+    "FEATURE2_TITLE": "توصيل سريع",
+    "FEATURE2_DESC": "توصيل في نفس اليوم متاح في معظم المناطق",
+    "FEATURE3_TITLE": "تسوق آمن",
+    "FEATURE3_DESC": "بياناتك ومدفوعاتك محمية تماماً",
+    "REVIEW_TEXT": "غيّر فريش كارت تجربة تسوقي تماماً. جودة المنتجات رائعة والتوصيل دائماً في الوقت المحدد. أنصح به بشدة!",
+    "FORM_TITLE": "إنشاء حسابك",
+    "FORM_SUBTITLE": "ابدأ رحلتك الطازجة معنا اليوم",
+    "NAME_LABEL": "الاسم*",
+    "NAME_PLACEHOLDER": "أميرة مصطفى",
+    "NAME_REQUIRED": "الاسم مطلوب",
+    "NAME_MINLENGTH": "يجب أن يكون الاسم 3 أحرف على الأقل",
+    "EMAIL_LABEL": "البريد الإلكتروني*",
+    "EMAIL_PLACEHOLDER": "amira@example.com",
+    "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+    "EMAIL_INVALID": "يرجى إدخال بريد إلكتروني صحيح",
+    "PASSWORD_LABEL": "كلمة المرور*",
+    "PASSWORD_PLACEHOLDER": "أنشئ كلمة مرور قوية",
+    "PASSWORD_REQUIRED": "كلمة المرور مطلوبة",
+    "PASSWORD_PATTERN": "8 أحرف على الأقل، حرف كبير وصغير ورقم ورمز خاص",
+    "CONFIRM_PASSWORD_LABEL": "تأكيد كلمة المرور*",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "أكّد كلمة المرور",
+    "CONFIRM_PASSWORD_REQUIRED": "يرجى تأكيد كلمة المرور",
+    "CONFIRM_PASSWORD_MISMATCH": "كلمتا المرور غير متطابقتين",
+    "PHONE_LABEL": "رقم الهاتف*",
+    "PHONE_PLACEHOLDER": "01xxxxxxxxx",
+    "PHONE_REQUIRED": "رقم الهاتف مطلوب",
+    "PHONE_PATTERN": "أدخل رقم مصري صحيح (01xxxxxxxxx)",
+    "SUBMIT_BTN": "إنشاء حسابي",
+    "ALREADY_ACCOUNT": "لديك حساب بالفعل؟",
+    "SIGN_IN_LINK": "تسجيل الدخول"
+  },
+  "login": {
+    "leftSide": {
+      "title": "فرش كارت - وجهتك الأولى للمنتجات الطازجة",
+      "description": "انضم إلى آلاف العملاء السعداء الذين يثقون في فرش كارت لاحتياجاتهم اليومية من البقالة",
+      "features": {
+        "delivery": "توصيل مجاني",
+        "payment": "دفع آمن",
+        "support": "دعم 24/7"
+      }
+    },
+    "form": {
+      "welcome": "مرحباً بعودتك!",
+      "subtitle": "سجل الدخول لمتابعة تجربة التسوق الخاصة بك",
+      "social": {
+        "google": "المتابعة باستخدام جوجل",
+        "facebook": "المتابعة باستخدام فيسبوك",
+        "divider": "أو تابع باستخدام البريد الإلكتروني"
+      },
+      "fields": {
+        "emailLabel": "البريد الإلكتروني",
+        "emailPlaceholder": "أدخل بريدك الإلكتروني",
+        "passwordLabel": "كلمة المرور",
+        "passwordPlaceholder": "أدخل كلمة المرور",
+        "forgotPassword": "نسيت كلمة المرور؟",
+        "rememberMe": "تذكرني"
+      },
+      "submit": "تسجيل الدخول",
+      "noAccount": "جديد في فرش كارت؟",
+      "createAccount": "إنشاء حساب جديد"
+    },
+    "errors": {
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordPattern": "8 أحرف على الأقل، حروف كبيرة وصغيرة، أرقام ورموز خاصة"
+    },
+    "footer": {
+      "ssl": "اتصال آمن SSL",
+      "users": "+50 ألف مستخدم",
+      "rating": "تقييم 4.9"
+    }
+  },
+  "forgotPassword": {
+    "leftSide": {
+      "title": "إعادة تعيين كلمة المرور",
+      "description": "لا تقلق، هذا يحدث للجميع. سنساعدك في العودة إلى حسابك في أسرع وقت.",
+      "features": {
+        "verification": "تأكيد البريد الإلكتروني",
+        "secure": "إعادة تعيين آمنة",
+        "encrypted": "بيانات مشفرة"
+      }
+    },
+    "rightSide": {
+      "title": "نسيت كلمة المرور؟",
+      "subtitle": "لا تقلق، سنرسل لك رمزاً لإعادة التعيين",
+      "backToSignIn": "العودة لتسجيل الدخول",
+      "changeEmail": "تغيير البريد الإلكتروني",
+      "steps": {
+        "step1": {
+          "label": "عنوان البريد الإلكتروني",
+          "placeholder": "أدخل بريدك الإلكتروني",
+          "submit": "إرسال رمز التعيين"
+        },
+        "step2": {
+          "label": "رمز التحقق",
+          "placeholder": "••••••",
+          "resendPrompt": "لم يصلك الرمز؟",
+          "resendBtn": "إعادة إرسال الرمز",
+          "submit": "تحقق من الرمز"
+        },
+        "step3": {
+          "label": "كلمة المرور الجديدة",
+          "placeholder": "أدخل كلمة المرور (8 أحرف على الأقل)",
+          "submit": "إعادة تعيين كلمة المرور"
+        }
+      },
+      "errors": {
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+        "codeRequired": "رمز التحقق مطلوب",
+        "codeInvalid": "يجب أن يتكون الرمز من 6 أرقام",
+        "passwordRequired": "كلمة المرور مطلوبة",
+        "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل"
+      }
+    }
+  }
+}

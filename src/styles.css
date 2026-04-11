@@ -1,3 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@import 'ngx-toastr/toastr';
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+
+@utility container {
+  margin-inline:auto;
+}
+
+@theme {
+--color-primary: #16a34a;
+--color-secondary: #101828;
+--color-danger: #fb2c36;
+
+    --color-brand: #138D46;
+      --color-brand-dark: #0f6b35;
+      --color-brand-light: #f0fdf4;
+
+}
+
+body{
+  font-family:'Exo','sans-serif';
+}
+
+                          /* Inimation for product Card */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+swiper-container {
+  --swiper-navigation-color: #10b981; /* emerald-500 */
+  --swiper-navigation-size: 20px;
+}
+.animate-marquee {
+  animation: marquee 7s linear infinite;
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

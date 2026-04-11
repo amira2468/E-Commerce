@@ -1,0 +1,189 @@
+{
+  "NAV": {
+    "FREE_SHIPPING": "Free Shipping on Orders 500 EGP",
+    "NEW_ARRIVALS": "New Arrivals Daily",
+    "PHONE": "+1 (800) 123-4567",
+    "EMAIL": "support@freshcart.com",
+    "SIGN_IN": "Sign In",
+    "SIGN_UP": "Sign Up",
+    "SIGN_OUT": "Sign Out",
+    "SEARCH_PLACEHOLDER": "Search for products...",
+    "HOME": "Home",
+    "SHOP": "Shop",
+    "CATEGORIES": "Categories",
+    "ALL_CATEGORIES": "All Categories",
+    "BRANDS": "Brands",
+    "SUPPORT_LABEL": "SUPPORT",
+    "SUPPORT_TEXT": "24/7 Help",
+    "LANGUAGE": "EN",
+    "MY_PROFILE": "My Profile",
+    "MY_ORDERS": "My Orders",
+    "MY_WISHLIST": "My Wishlist",
+    "ADDRESSES": "Addresses",
+    "SETTINGS": "Settings",
+    "DRAWER_SEARCH": "Search products..."
+  },
+  "HOME": {
+    "SLIDE1_BADGE": "🌿 Fresh & Organic",
+    "SLIDE1_TITLE": "Fresh Products Delivered to your Door",
+    "SLIDE1_DESC": "Get 20% off your first order",
+    "SLIDE1_BTN": "Shop Now →",
+    "SLIDE2_BADGE": "✨ New Arrivals",
+    "SLIDE2_TITLE": "Exotic Vegetables Just Arrived",
+    "SLIDE2_DESC": "Discover our latest premium collection",
+    "SLIDE2_BTN": "Explore Now →",
+    "SLIDE3_BADGE": "⚡ Flash Sale",
+    "SLIDE3_TITLE": "Daily Deals You Can't Miss",
+    "SLIDE3_DESC": "Up to 50% off on selected items",
+    "SLIDE3_BTN": "View Deals →",
+    "FEATURE1_TITLE": "Free Shipping",
+    "FEATURE1_DESC": "On orders over 500 EGP",
+    "FEATURE2_TITLE": "Secure Payment",
+    "FEATURE2_DESC": "100% secure transactions",
+    "FEATURE3_TITLE": "Easy Returns",
+    "FEATURE3_DESC": "14-day return policy",
+    "FEATURE4_TITLE": "24/7 Support",
+    "FEATURE4_DESC": "Dedicated support team",
+    "CATEGORIES_TITLE": "Shop By",
+    "CATEGORIES_HIGHLIGHT": "Category",
+    "VIEW_ALL_CATEGORIES": "View All Categories",
+    "PROMO1_BADGE": "🔥 Deal of the Day",
+    "PROMO1_TITLE": "Fresh Organic Fruits",
+    "PROMO1_DESC": "Get up to 40% off on selected organic fruits",
+    "PROMO1_DISCOUNT": "40% OFF",
+    "PROMO1_CODE_LABEL": "Use code:",
+    "PROMO1_CODE": "ORGANIC40",
+    "PROMO1_BTN": "Shop Now",
+    "PROMO2_BADGE": "✨ New Arrivals",
+    "PROMO2_TITLE": "Exotic Vegetables",
+    "PROMO2_DESC": "Discover our latest collection of premium vegetables",
+    "PROMO2_DISCOUNT": "25% OFF",
+    "PROMO2_CODE_LABEL": "Use code:",
+    "PROMO2_CODE": "FRESH25",
+    "PROMO2_BTN": "Explore Now"
+  },
+  "REGISTER": {
+    "WELCOME": "Welcome to",
+    "BRAND": "FreshCart",
+    "SUBTITLE": "Join thousands of happy customers who enjoy fresh groceries delivered right to their doorstep.",
+    "FEATURE1_TITLE": "Premium Quality",
+    "FEATURE1_DESC": "Premium quality products sourced from trusted suppliers.",
+    "FEATURE2_TITLE": "Fast Delivery",
+    "FEATURE2_DESC": "Same-day delivery available in most areas",
+    "FEATURE3_TITLE": "Secure Shopping",
+    "FEATURE3_DESC": "Your data and payments are completely secure",
+    "REVIEW_TEXT": "FreshCart has transformed my shopping experience. The quality of the products is outstanding, and the delivery is always on time. Highly recommend!",
+    "FORM_TITLE": "Create Your Account",
+    "FORM_SUBTITLE": "Start your fresh journey with us today",
+    "NAME_LABEL": "Name*",
+    "NAME_PLACEHOLDER": "Amira Mustafa",
+    "NAME_REQUIRED": "Name is required",
+    "NAME_MINLENGTH": "Name must be at least 3 characters",
+    "EMAIL_LABEL": "Email*",
+    "EMAIL_PLACEHOLDER": "amira@example.com",
+    "EMAIL_REQUIRED": "Email is required",
+    "EMAIL_INVALID": "Please enter a valid email",
+    "PASSWORD_LABEL": "Password*",
+    "PASSWORD_PLACEHOLDER": "Create a strong password",
+    "PASSWORD_REQUIRED": "Password is required",
+    "PASSWORD_PATTERN": "Min 8 chars, uppercase, lowercase, number & special character",
+    "CONFIRM_PASSWORD_LABEL": "Confirm Password*",
+    "CONFIRM_PASSWORD_PLACEHOLDER": "Confirm your password",
+    "CONFIRM_PASSWORD_REQUIRED": "Please confirm your password",
+    "CONFIRM_PASSWORD_MISMATCH": "Passwords do not match",
+    "PHONE_LABEL": "Phone Number*",
+    "PHONE_PLACEHOLDER": "01xxxxxxxxx",
+    "PHONE_REQUIRED": "Phone number is required",
+    "PHONE_PATTERN": "Enter a valid Egyptian number (01xxxxxxxxx)",
+    "SUBMIT_BTN": "Create My Account",
+    "ALREADY_ACCOUNT": "Already have an account?",
+    "SIGN_IN_LINK": "Sign In"
+  },
+  "login": {
+    "leftSide": {
+      "title": "FreshCart - Your One-Stop Shop for Fresh Products",
+      "description": "Join thousands of happy customers who trust FreshCart for their daily grocery needs",
+      "features": {
+        "delivery": "Free Delivery",
+        "payment": "Secure Payment",
+        "support": "24/7 Support"
+      }
+    },
+    "form": {
+      "welcome": "Welcome Back!",
+      "subtitle": "Sign in to continue your fresh shopping experience",
+      "social": {
+        "google": "Continue with Google",
+        "facebook": "Continue with Facebook",
+        "divider": "Or continue with email"
+      },
+      "fields": {
+        "emailLabel": "Email Address",
+        "emailPlaceholder": "Enter your email",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "forgotPassword": "Forgot Password?",
+        "rememberMe": "Keep me signed in"
+      },
+      "submit": "Sign In",
+      "noAccount": "New to FreshCart?",
+      "createAccount": "Create an account"
+    },
+    "errors": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordPattern": "Min 8 chars, uppercase, lowercase, number & special character"
+    },
+    "footer": {
+      "ssl": "SSL Secured",
+      "users": "50K+ Users",
+      "rating": "4.9 Rating"
+    }
+  },
+  "forgotPassword": {
+    "leftSide": {
+      "title": "Reset Your Password",
+      "description": "Don't worry, it happens to the best of us. We'll help you get back into your account in no time.",
+      "features": {
+        "verification": "Email Verification",
+        "secure": "Secure Reset",
+        "encrypted": "Encrypted"
+      }
+    },
+    "rightSide": {
+      "title": "Forgot Password?",
+      "subtitle": "No worries, we'll send you a reset code",
+      "backToSignIn": "Back to Sign In",
+      "changeEmail": "Change email address",
+      "steps": {
+        "step1": {
+          "label": "Email Address",
+          "placeholder": "Enter your email address",
+          "submit": "Send Reset Code"
+        },
+        "step2": {
+          "label": "Verification Code",
+          "placeholder": "••••••",
+          "resendPrompt": "Didn't receive the code?",
+          "resendBtn": "Resend Code",
+          "submit": "Verify Code"
+        },
+        "step3": {
+          "label": "New Password",
+          "placeholder": "Enter new password (min. 8 characters)",
+          "submit": "Reset Password"
+        }
+      },
+      "errors": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "codeRequired": "Verification code is required",
+        "codeInvalid": "Code must be exactly 6 digits",
+        "passwordRequired": "Password is required",
+        "passwordMin": "Password must be at least 8 characters"
+      }
+    }
+  }
+
+}

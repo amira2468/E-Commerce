@@ -1,0 +1,208 @@
+<section class="grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex flex-col lg:flex-row gap-12 lg:gap-20">
+
+  <!-- Left Side -->
+  <div class="w-full lg:w-1/2 space-y-10">
+    <h1 class="text-4xl font-bold text-slate-800 tracking-tight mb-4">
+      {{ 'REGISTER.WELCOME' | translate }} <span class="text-green-600">{{ 'REGISTER.BRAND' | translate }}</span>
+    </h1>
+    <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
+      {{ 'REGISTER.SUBTITLE' | translate }}
+    </p>
+
+    <ul class="space-y-6">
+      <li class="flex items-start gap-4">
+        <div class="size-12 rounded-full bg-green-100 text-green-600 grid place-items-center shrink-0">
+          <i class="fa-solid fa-star text-lg"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-800">{{ 'REGISTER.FEATURE1_TITLE' | translate }}</h3>
+          <p class="text-sm text-gray-600 mt-1">{{ 'REGISTER.FEATURE1_DESC' | translate }}</p>
+        </div>
+      </li>
+      <li class="flex items-start gap-4">
+        <div class="size-12 rounded-full bg-green-100 text-green-600 grid place-items-center shrink-0">
+          <i class="fa-solid fa-truck-fast text-lg"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-800">{{ 'REGISTER.FEATURE2_TITLE' | translate }}</h3>
+          <p class="text-sm text-gray-600 mt-1">{{ 'REGISTER.FEATURE2_DESC' | translate }}</p>
+        </div>
+      </li>
+      <li class="flex items-start gap-4">
+        <div class="size-12 rounded-full bg-green-100 text-green-600 grid place-items-center shrink-0">
+          <i class="fa-solid fa-shield-halved text-lg"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-gray-800">{{ 'REGISTER.FEATURE3_TITLE' | translate }}</h3>
+          <p class="text-sm text-gray-600 mt-1">{{ 'REGISTER.FEATURE3_DESC' | translate }}</p>
+        </div>
+      </li>
+    </ul>
+
+    <figure class="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
+      <figcaption class="flex items-center gap-3 mb-3">
+        <img src="https://i.pravatar.cc/150?img=47" alt="Sarah Johnson" class="size-10 rounded-full object-cover"/>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-800">Sarah Johnson</h4>
+          <div class="text-yellow-400 text-xs flex gap-0.5">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+      </figcaption>
+      <blockquote class="text-sm text-gray-600 italic leading-relaxed">
+        "{{ 'REGISTER.REVIEW_TEXT' | translate }}"
+      </blockquote>
+    </figure>
+  </div>
+
+  <!-- Right Side -->
+  <div class="w-full lg:w-1/2 max-w-lg mx-auto lg:mx-0 bg-white rounded-2xl shadow-xl shadow-black/5 border border-gray-100 p-8 sm:p-10">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold text-slate-800">{{ 'REGISTER.FORM_TITLE' | translate }}</h2>
+      <p class="text-sm text-gray-500 mt-2">{{ 'REGISTER.FORM_SUBTITLE' | translate }}</p>
+    </div>
+
+    <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="SubmitForm()">
+
+      <!-- Name -->
+      <div>
+        <label for="fullName" class="block text-sm text-gray-600 mb-1.5">{{ 'REGISTER.NAME_LABEL' | translate }}</label>
+        <input
+          id="fullName" type="text" autocomplete="name"
+          [placeholder]="'REGISTER.NAME_PLACEHOLDER' | translate"
+          formControlName="name"
+          [class]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched
+            ? 'w-full px-4 py-2.5 rounded-lg border border-red-400 outline-none focus:ring-2 focus:ring-red-400 text-sm text-gray-800 placeholder:text-gray-400 transition'
+            : 'w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition'"
+        />
+        @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+          @if (registerForm.get('name')?.hasError('required')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.NAME_REQUIRED' | translate }}
+            </p>
+          } @else if (registerForm.get('name')?.hasError('minlength')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.NAME_MINLENGTH' | translate }}
+            </p>
+          }
+        }
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm text-gray-600 mb-1.5">{{ 'REGISTER.EMAIL_LABEL' | translate }}</label>
+        <input
+          id="email" type="email" autocomplete="email"
+          [placeholder]="'REGISTER.EMAIL_PLACEHOLDER' | translate"
+          formControlName="email"
+          [class]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched
+            ? 'w-full px-4 py-2.5 rounded-lg border border-red-400 outline-none focus:ring-2 focus:ring-red-400 text-sm text-gray-800 placeholder:text-gray-400 transition'
+            : 'w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition'"
+        />
+        @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+          @if (registerForm.get('email')?.hasError('required')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.EMAIL_REQUIRED' | translate }}
+            </p>
+          } @else if (registerForm.get('email')?.hasError('email')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.EMAIL_INVALID' | translate }}
+            </p>
+          }
+        }
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm text-gray-600 mb-1.5">{{ 'REGISTER.PASSWORD_LABEL' | translate }}</label>
+        <input
+          id="password" type="password" autocomplete="new-password"
+          [placeholder]="'REGISTER.PASSWORD_PLACEHOLDER' | translate"
+          formControlName="password"
+          [class]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched
+            ? 'w-full px-4 py-2.5 rounded-lg border border-red-400 outline-none focus:ring-2 focus:ring-red-400 text-sm text-gray-800 placeholder:text-gray-400 transition'
+            : 'w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition'"
+        />
+        @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+          @if (registerForm.get('password')?.hasError('required')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.PASSWORD_REQUIRED' | translate }}
+            </p>
+          } @else if (registerForm.get('password')?.hasError('pattern')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.PASSWORD_PATTERN' | translate }}
+            </p>
+          }
+        }
+      </div>
+
+      <!-- Confirm Password -->
+      <div>
+        <label for="confirmPassword" class="block text-sm text-gray-600 mb-1.5">{{ 'REGISTER.CONFIRM_PASSWORD_LABEL' | translate }}</label>
+        <input
+          id="confirmPassword" type="password" autocomplete="new-password"
+          [placeholder]="'REGISTER.CONFIRM_PASSWORD_PLACEHOLDER' | translate"
+          formControlName="rePassword"
+          [class]="registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched
+            ? 'w-full px-4 py-2.5 rounded-lg border border-red-400 outline-none focus:ring-2 focus:ring-red-400 text-sm text-gray-800 placeholder:text-gray-400 transition'
+            : 'w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition'"
+        />
+        @if (registerForm.get('rePassword')?.touched) {
+          @if (registerForm.get('rePassword')?.hasError('required')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.CONFIRM_PASSWORD_REQUIRED' | translate }}
+            </p>
+          } @else if (registerForm.get('rePassword')?.hasError('mismatch')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.CONFIRM_PASSWORD_MISMATCH' | translate }}
+            </p>
+          }
+        }
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label for="phone" class="block text-sm text-gray-600 mb-1.5">{{ 'REGISTER.PHONE_LABEL' | translate }}</label>
+        <input
+          id="phone" type="tel" autocomplete="tel"
+          [placeholder]="'REGISTER.PHONE_PLACEHOLDER' | translate"
+          formControlName="phone"
+          [class]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched
+            ? 'w-full px-4 py-2.5 rounded-lg border border-red-400 outline-none focus:ring-2 focus:ring-red-400 text-sm text-gray-800 placeholder:text-gray-400 transition'
+            : 'w-full px-4 py-2.5 rounded-lg border border-gray-200 outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600 text-sm text-gray-800 placeholder:text-gray-400 transition'"
+        />
+        @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+          @if (registerForm.get('phone')?.hasError('required')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.PHONE_REQUIRED' | translate }}
+            </p>
+          } @else if (registerForm.get('phone')?.hasError('pattern')) {
+            <p class="text-red-500 text-xs mt-1.5 flex items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ 'REGISTER.PHONE_PATTERN' | translate }}
+            </p>
+          }
+        }
+      </div>
+
+      <!-- Submit -->
+      <div class="pt-2">
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="w-full cursor-pointer bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 rounded-lg transition duration-200 flex items-center justify-center gap-2"
+        >
+          <i class="fa-solid fa-user-plus"></i> {{ 'REGISTER.SUBMIT_BTN' | translate }}
+        </button>
+      </div>
+
+    </form>
+
+    <p class="text-center text-sm text-gray-600 mt-8">
+      {{ 'REGISTER.ALREADY_ACCOUNT' | translate }}
+      <a routerLink="/login" class="text-green-600 font-medium hover:underline">{{ 'REGISTER.SIGN_IN_LINK' | translate }}</a>
+    </p>
+  </div>
+
+</section>

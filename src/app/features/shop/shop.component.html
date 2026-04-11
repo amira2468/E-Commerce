@@ -1,0 +1,117 @@
+<div class="bg-gradient-to-r from-emerald-700 to-emerald-400 py-20 mb-8">
+  <div class="container">
+    <nav class="flex items-center gap-2 text-sm text-white/80 mb-4">
+      <a routerLink="/" class="hover:text-white transition-colors cursor-pointer">Home</a>
+      <span>/</span>
+      <span class="text-white font-extrabold">All Products</span>
+    </nav>
+    <div class="flex items-center gap-4">
+      <div class="w-14 h-20 bg-white/20 rounded-2xl flex items-center justify-center">
+        <i class="fas fa-box-open text-white text-2xl"></i>
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold text-white">All Products</h1>
+        <p class="text-white/80 text-sm mt-1">Explore our complete product collection</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  @if (!isLoading() && productList().length > 0) {
+    <p class="text-gray-500 text-sm mb-4">
+      Showing <span class="font-semibold text-slate-800">{{ productList().length }}</span> products
+    </p>
+  }
+
+  @if (isLoading()) {
+    <div class="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      @for (i of [1,2,3,4,5,6,7,8,9,10]; track i) {
+        <div class="relative bg-white border border-gray-100 rounded-2xl p-4 animate-pulse">
+          <div class="relative overflow-hidden rounded-xl bg-gray-100 mb-4 aspect-square skeleton-shimmer"></div>
+          <div class="space-y-3">
+            <div class="h-2 bg-gray-100 rounded w-1/3 skeleton-shimmer"></div>
+            <div class="space-y-2">
+              <div class="h-3 bg-gray-100 rounded w-full skeleton-shimmer"></div>
+              <div class="h-3 bg-gray-100 rounded w-2/3 skeleton-shimmer"></div>
+            </div>
+            <div class="h-3 bg-gray-100 rounded w-1/4 skeleton-shimmer"></div>
+            <div class="flex items-center justify-between pt-2">
+              <div class="space-y-2">
+                <div class="h-4 bg-gray-100 rounded w-16 skeleton-shimmer"></div>
+                <div class="h-3 bg-gray-100 rounded w-10 skeleton-shimmer"></div>
+              </div>
+              <div class="w-9 h-9 bg-gray-100 rounded-lg skeleton-shimmer"></div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      @for (product of productList(); track product._id) {
+        <div class="relative bg-white border border-gray-100 rounded-2xl p-4 transition-all duration-300 group font-sans hover:border-gray-200">
+          @if (product.priceAfterDiscount) {
+            <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
+              -{{ getDiscount(product.price, product.priceAfterDiscount) }}%
+            </span>
+          }
+
+          <div class="relative overflow-hidden rounded-xl bg-gray-50 mb-4 aspect-square flex items-center justify-center">
+            <img [src]="product.imageCover" [alt]="product.title" class="w-4/5 h-4/5 object-contain transition-transform duration-300 group-hover:scale-105" />
+
+            <div class="absolute top-2 right-2 flex flex-col gap-2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+              <button (click)="addToWishList(product._id)" class="w-8 h-8 bg-white border cursor-pointer border-gray-100 rounded-full flex items-center justify-center text-gray-400 text-xs hover:bg-red-500 hover:text-white transition-all">
+                <i class="far fa-heart"></i>
+              </button>
+              <button [routerLink]="['/details', product._id, product.slug]" class="w-8 h-8 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-500 text-xs hover:bg-emerald-600 hover:text-white transition-all">
+                <i class="far fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <p class="text-[11px] uppercase tracking-widest text-gray-400 truncate">{{ product.category.name }}</p>
+
+            <h3 class="text-sm font-medium text-slate-800 leading-snug line-clamp-2 min-h-[2.6rem] hover:text-emerald-600 cursor-pointer transition-colors">
+              {{ product.title }}
+            </h3>
+
+            <div class="flex items-center gap-1">
+              <div class="flex text-amber-400 text-xs gap-px">
+                @for (star of getStars(product.ratingsAverage); track $index) { <i [class]="star"></i> }
+              </div>
+              <span class="text-[11px] text-gray-400">{{ product.ratingsAverage }}</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1.5">
+              <span>
+                @if (product.priceAfterDiscount) {
+                  <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount }} EGP</p>
+                  <p class="text-xs text-gray-400 line-through">{{ product.price }} EGP</p>
+                } @else {
+                  <p class="text-base font-bold text-gray-800">{{ product.price }} EGP</p>
+                }
+              </span>
+              <button (click)="addToCart(product.id)" class="w-9 h-9 cursor-pointer bg-emerald-600 text-white rounded-lg flex items-center justify-center hover:bg-emerald-700 transition-all shadow-sm">
+                <i class="fas fa-plus text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-span-full flex flex-col items-center justify-center py-20 text-center">
+          <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-box-open text-5xl text-gray-300"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">No Products Found</h3>
+          <p class="text-gray-500">Try adjusting your search or filters.</p>
+          <a routerLink="/shop"
+    class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl transition-colors">
+    <i class="fas fa-th-large"></i> View All Products
+    </a>
+        </div>
+      }
+    </div>
+  }
+</div>

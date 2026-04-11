@@ -1,0 +1,23 @@
+.promo-card {
+  animation: fadeSlideUp 0.6s ease both;
+}
+
+.promo-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.promo-card:hover {
+  transform: translateY(-4px);
+  transition: transform 0.3s ease;
+}
