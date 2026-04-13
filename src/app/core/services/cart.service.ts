@@ -41,9 +41,9 @@ return this.httpClient.post(environment.baseUrl + `/api/v2/cart` , {
     return this.httpClient.post(environment.baseUrl + `/api/v1/orders/${cartId}` , data)
   }
 
-  CreateVisaOrder(cartId:string , data :object):Observable<any>{
-    return this.httpClient.post(environment.baseUrl + `/api/v1/orders/checkout-session/${cartId}?url=${environment}` , data)
-  }
+  CreateVisaOrder(cartId: string, data: object): Observable<any> {
+  return this.httpClient.post(environment.baseUrl + `/api/v1/orders/checkout-session/${cartId}?url=${environment.url}`,data);
+}
 
 
           // Orders

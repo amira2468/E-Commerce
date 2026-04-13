@@ -3,10 +3,11 @@ import { CartService } from '../../core/services/cart.service';
 import { Cart } from './models/cart.interface';
 import { RouterLink } from "@angular/router";
 import { isPlatformBrowser } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cart',
-  imports: [RouterLink],
+  imports: [RouterLink,TranslateModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

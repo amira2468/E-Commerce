@@ -27,6 +27,12 @@ export const routes: Routes = [
     }
   ]
 },
+{
+  path: 'search',
+  loadComponent: () =>
+    import('./features/search-bar/search-bar.component').then(m => m.SearchComponent),
+  title: 'Search',
+},
   {
     path: 'shop',
     loadComponent: () =>

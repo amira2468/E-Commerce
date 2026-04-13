@@ -1,28 +1,25 @@
 <section>
   <div class="container p-6">
 
-    <!-- Title -->
     <div class="mb-8">
       <div class="flex items-center gap-3 text-3xl font-bold text-gray-900 mb-2">
         <div class="bg-[#138D46] text-white w-12 h-12 flex items-center justify-center rounded-xl">
           <i class="fa-solid fa-cart-shopping"></i>
         </div>
-        <h1>Shopping Cart</h1>
+        <h1>{{ 'cart.header.title' | translate }}</h1>
       </div>
       <p class="text-gray-500 text-lg">
-        You have <span class="font-bold text-[#138D46]">{{ cartDetilse()?.products?.length ?? 0 }} items</span> in your cart
+        {{ 'cart.header.countPrefix' | translate }} <span class="font-bold text-[#138D46]">{{ cartDetilse()?.products?.length ?? 0 }} {{ 'cart.header.countSuffix' | translate }}</span> {{ 'cart.header.inCart' | translate }}
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-      <!-- Left side -->
       <div class="lg:col-span-8 flex flex-col gap-5">
 
         @for (item of (cartDetilse()?.products ?? []); track item.product._id) {
           <div class="flex flex-col sm:flex-row items-center gap-6 border border-gray-200 rounded-2xl p-5 bg-white shadow-sm">
 
-            <!-- Image -->
             <div class="flex flex-col items-center gap-3 shrink-0">
               <div class="w-32 h-32 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100 overflow-hidden">
                 <img
@@ -33,16 +30,15 @@
               </div>
               @if (item.product.quantity > 0) {
                 <span class="bg-[#138D46] text-white text-2xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i class="fa-solid fa-check"></i> In Stock
+                  <i class="fa-solid fa-check"></i> {{ 'cart.item.status.inStock' | translate }}
                 </span>
               } @else {
                 <span class="bg-[#830404] text-white text-2xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <i class="fa-solid fa-lock"></i> Out of Stock
+                  <i class="fa-solid fa-lock"></i> {{ 'cart.item.status.outOfStock' | translate }}
                 </span>
               }
             </div>
 
-            <!-- Product Details -->
             <div class="flex-1 w-full">
               <h3 class="font-bold text-xl text-gray-900">{{ item.product.title }}</h3>
               <div class="flex items-center gap-3 text-sm text-gray-500 mt-2">
@@ -50,14 +46,13 @@
                   {{ item.product.category.name }}
                 </span>
                 <span class="text-gray-300">•</span>
-                <span class="text-xs">SKU: {{ item.product.id.slice(0, 6) }}</span>
+                <span class="text-xs">{{ 'cart.item.sku' | translate }}: {{ item.product.id.slice(0, 6) }}</span>
               </div>
               <div class="mt-4 font-bold text-[#138D46] text-xl">
-                {{ item.price }} EGP <span class="text-xs text-gray-400 font-normal">per unit</span>
+                {{ item.price }} {{ 'cart.currency' | translate }} <span class="text-xs text-gray-400 font-normal">{{ 'cart.item.perUnit' | translate }}</span>
               </div>
             </div>
 
-            <!-- Count & Remove -->
             <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto mt-4 sm:mt-0">
               <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden h-10">
                 <button
@@ -74,9 +69,9 @@
               </div>
 
               <div class="text-right min-w-16">
-                <div class="text-xs text-gray-400 mb-0.5">Total</div>
+                <div class="text-xs text-gray-400 mb-0.5">{{ 'cart.item.total' | translate }}</div>
                 <div class="font-bold text-xl text-gray-900">
-                  {{ item.count * item.price }} <span class="text-xs font-normal">EGP</span>
+                  {{ item.count * item.price }} <span class="text-xs font-normal">{{ 'cart.currency' | translate }}</span>
                 </div>
               </div>
 
@@ -93,82 +88,79 @@
             <div class="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-gray-50 mb-8">
               <i class="fa-solid fa-box-open text-6xl text-gray-300"></i>
             </div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Your cart is empty</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">{{ 'cart.empty.title' | translate }}</h2>
             <p class="text-gray-500 mb-10 text-lg leading-relaxed">
-              Looks like you haven't added anything to your cart yet. <br class="hidden sm:block" />
-              Start exploring our products!
+              {{ 'cart.empty.subtitle' | translate }}
             </p>
             <button
               routerLink="/shop"
               class="inline-flex items-center justify-center gap-3 rounded-full bg-emerald-500 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:bg-emerald-600 hover:-translate-y-0.5 focus:ring-4 focus:ring-emerald-100 focus:outline-hidden shadow-sm hover:shadow-md cursor-pointer">
-              Start Shopping
+              {{ 'cart.empty.actionBtn' | translate }}
               <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
         }
 
-        <!-- Continue Shopping & Clear All -->
         <div class="flex items-center justify-between pt-4 mt-2">
           <button
             routerLink="/shop"
             class="text-[#138D46] font-medium hover:underline flex items-center gap-2 focus:outline-hidden">
-            <i class="fa-solid fa-arrow-left-long"></i> Continue Shopping
+            <i class="fa-solid fa-arrow-left-long"></i> {{ 'cart.actions.continueShopping' | translate }}
           </button>
           <button
             (click)="clearUserData()"
             class="text-gray-400 hover:text-red-500 font-medium flex items-center gap-2 transition-colors focus:outline-hidden">
-            <i class="fa-solid fa-trash-can text-sm"></i> Clear all items
+            <i class="fa-solid fa-trash-can text-sm"></i> {{ 'cart.actions.clearAll' | translate }}
           </button>
         </div>
 
       </div>
 
-      <!-- Right side -->
       <div class="lg:col-span-4">
         <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm sticky top-6">
 
           <div class="bg-[#138D46] text-white p-6">
             <div class="flex items-center gap-3 font-bold text-xl mb-1">
-              <i class="fa-solid fa-lock text-green-200"></i> Order Summary
+              <i class="fa-solid fa-lock text-green-200"></i> {{ 'cart.summary.title' | translate }}
             </div>
-            <div class="text-sm text-green-100 font-medium">{{ cartDetilse()?.products?.length ?? 0 }} items in your cart</div>
+            <div class="text-sm text-green-100 font-medium">{{ cartDetilse()?.products?.length ?? 0 }} {{ 'cart.summary.items' | translate }}</div>
           </div>
 
           <div class="p-6">
             <div class="flex items-start gap-3 bg-green-50 text-[#138D46] p-4 rounded-xl mb-6 border border-green-100">
               <i class="fa-solid fa-truck-fast mt-1 text-lg"></i>
               <div>
-                <div class="font-bold">Free Shipping!</div>
-                <div class="text-sm mt-0.5 font-medium">You qualify for free delivery</div>
+                <div class="font-bold">{{ 'cart.summary.shipping.promoTitle' | translate }}</div>
+                <div class="text-sm mt-0.5 font-medium">{{ 'cart.summary.shipping.promoSub' | translate }}</div>
               </div>
             </div>
 
             <div class="space-y-4 text-base text-gray-600 mb-6">
               <div class="flex justify-between items-center">
-                <span>Shipping</span>
-                <span class="font-bold text-[#138D46]">FREE</span>
+                <span>{{ 'cart.summary.shipping.label' | translate }}</span>
+                <span class="font-bold text-[#138D46]">{{ 'cart.summary.shipping.free' | translate }}</span>
               </div>
             </div>
 
             <div class="flex justify-between items-end border-t border-gray-100 pt-5 mb-6">
-              <span class="font-bold text-gray-900 text-lg">Total</span>
+              <span class="font-bold text-gray-900 text-lg">{{ 'cart.summary.total' | translate }}</span>
               <span class="font-black text-3xl text-gray-900">
-                {{ cartDetilse()?.totalCartPrice ?? 0 }} <span class="text-sm font-semibold text-gray-500">EGP</span>
+                {{ cartDetilse()?.totalCartPrice ?? 0 }} <span class="text-sm font-semibold text-gray-500">{{ 'cart.currency' | translate }}</span>
               </span>
             </div>
 
             <button
               [routerLink]="['/checkout', cartDetilse()?._id]"
               class="w-full py-4 bg-[#138D46] text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2 focus:outline-hidden hover:-translate-y-0.5 transform duration-200">
-              <i class="fa-solid fa-lock"></i> Secure Checkout
+              <i class="fa-solid fa-lock"></i> {{ 'cart.summary.checkoutBtn' | translate }}
             </button>
 
             <div class="flex items-center justify-center gap-6 mt-6 text-xs font-semibold text-gray-500">
               <div class="flex items-center gap-1.5 text-[#138D46]">
-                <i class="fa-solid fa-shield-halved"></i> Secure Payment
+                <i class="fa-solid fa-shield-halved"></i> {{ 'cart.summary.badges.secure' | translate }}
               </div>
               <div class="flex items-center gap-1.5 text-blue-600">
-                <i class="fa-solid fa-truck-fast"></i> Fast Delivery
+                <i class="fa-solid fa-truck-fast"></i> {{ 'cart.summary.badges.fast' | translate }}
               </div>
             </div>
 

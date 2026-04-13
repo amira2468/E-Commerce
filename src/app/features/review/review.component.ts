@@ -5,10 +5,11 @@ import { ReviewsService } from '../../core/services/review.service';
 import { FormsModule } from '@angular/forms';
 import { PLATFORM_ID } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-review',
-  imports: [DatePipe, FormsModule],
+  imports: [DatePipe, FormsModule , TranslateModule],
   templateUrl: './review.component.html',
   styleUrl: './review.component.css'
 })

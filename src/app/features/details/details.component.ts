@@ -8,10 +8,11 @@ import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { WishListService } from '../../core/services/wish-list.service';
 import { ProductReviewsComponent } from '../review/review.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details',
-  imports: [CommonModule, RouterLink , ProductReviewsComponent],
+  imports: [CommonModule, RouterLink , ProductReviewsComponent , TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './details.component.html',
   styleUrl: './details.component.css',

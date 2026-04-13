@@ -1,23 +1,27 @@
 .promo-card {
-  animation: fadeSlideUp 0.6s ease both;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease-out;
+
+  view-timeline-name: --card-visible;
+  view-timeline-axis: block;
+  animation-timeline: --card-visible;
+  animation-name: showUp;
+  animation-range: entry 10% cover 30%;
+  animation-fill-mode: both;
 }
 
 .promo-card:nth-child(2) {
-  animation-delay: 0.15s;
+  animation-delay: 0.2s;
 }
 
-@keyframes fadeSlideUp {
+@keyframes showUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(50px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
-}
-
-.promo-card:hover {
-  transform: translateY(-4px);
-  transition: transform 0.3s ease;
 }

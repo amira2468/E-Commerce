@@ -2,10 +2,11 @@ import { AddressService } from './../../core/services/adresses.service';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-addresses',
-  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule],
+  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule, TranslateModule],
   templateUrl: './addresses.component.html',
   styleUrl: './addresses.component.css',
 })

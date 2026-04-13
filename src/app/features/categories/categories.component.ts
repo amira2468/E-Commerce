@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CategoriesService } from '../../core/services/categories.service';
 import { Categories } from '../../core/models/categories.interface';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories',
-  imports: [RouterLink],
+  imports: [RouterLink , TranslateModule],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css',
 })

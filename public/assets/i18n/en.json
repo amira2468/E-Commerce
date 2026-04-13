@@ -28,6 +28,7 @@
     "SLIDE1_TITLE": "Fresh Products Delivered to your Door",
     "SLIDE1_DESC": "Get 20% off your first order",
     "SLIDE1_BTN": "Shop Now →",
+    "SLIDE_BTN" :"View Details",
     "SLIDE2_BADGE": "✨ New Arrivals",
     "SLIDE2_TITLE": "Exotic Vegetables Just Arrived",
     "SLIDE2_DESC": "Discover our latest premium collection",
@@ -184,6 +185,488 @@
         "passwordMin": "Password must be at least 8 characters"
       }
     }
+  },
+  "products": {
+    "featuredTitle": "Featured",
+    "featuredSubtitle": "products",
+    "currency": "EGP"
+  },
+  "newsletter": {
+    "badge": "Newsletter",
+    "subscribersCount": "50,000+ Subscribers",
+    "titlePart1": "Get the Freshest Updates",
+    "titlePart2": "Delivered Free",
+    "description": "Weekly recipes, seasonal offers & exclusive member perks.",
+    "feature1": "Fresh Picks Weekly",
+    "feature2": "Free Delivery Codes",
+    "inputPlaceholder": "you@example.com",
+    "subscribeBtn": "Subscribe",
+    "unsubscribeNote": "Unsubscribe anytime. No spam, ever."
+  },
+  "appSection": {
+    "badge": "MOBILE APP",
+    "title": "Shop Faster on Our App",
+    "description": "Get app-exclusive deals & 15% off your first order.",
+    "downloadOn": "Download on",
+    "appStore": "App Store",
+    "getItOn": "GET IT ON",
+    "googlePlay": "Google Play",
+    "stats": "4.9 • 100K+ downloads"
+  },
+  "allProducts": {
+    "breadcrumb": {
+      "home": "Home",
+      "current": "All Products"
+    },
+    "header": {
+      "title": "All Products",
+      "subtitle": "Explore our complete product collection"
+    },
+    "showingPrefix": "Showing",
+    "showingSuffix": "products",
+    "currency": "EGP",
+    "emptyState": {
+      "title": "No Products Found",
+      "subtitle": "Try adjusting your search or filters.",
+      "actionBtn": "View All Products"
+    }
+  },
+  "categories": {
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Categories"
+    },
+    "header": {
+      "title": "All Categories",
+      "subtitle": "Browse our wide range of product categories"
+    },
+    "showingPrefix": "Showing",
+    "showingSuffix": "categories",
+    "loading": "Loading Categories...",
+    "viewSub": "View Subcategories"
+  },
+  "subCategories": {
+    "breadcrumb": {
+      "home": "Home",
+      "categories": "Categories"
+    },
+    "header": {
+      "subtitle": "Choose a subcategory to browse products"
+    },
+    "backToCategories": "Back to Categories",
+    "countText": "Subcategories in",
+    "loading": "Loading Subcategories...",
+    "browse": "Browse Products"
+  },
+  "brands": {
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Brands"
+    },
+    "header": {
+      "title": "Top Brands",
+      "subtitle": "Shop from your favorite brands"
+    },
+    "loading": "Loading Brands...",
+    "viewProducts": "View Products"
+  },
+  "wishlist": {
+    "breadcrumb": {
+      "home": "Home",
+      "current": "Wishlist"
+    },
+    "header": {
+      "title": "My Wishlist",
+      "itemsCount": "items saved"
+    },
+    "table": {
+      "product": "Product",
+      "price": "Price",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "currency": "EGP",
+    "status": {
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock"
+    },
+    "actions": {
+      "addToCart": "Add to Cart",
+      "outOfStockBtn": "Out of Stock"
+    },
+    "continueShopping": "Continue Shopping",
+    "empty": {
+      "title": "Your wishlist is empty",
+      "subtitle": "Save items you love and come back to them anytime",
+      "actionBtn": "Browse Products"
+    }
+  },
+  "cart": {
+    "header": {
+      "title": "Shopping Cart",
+      "countPrefix": "You have",
+      "countSuffix": "items",
+      "inCart": "in your cart"
+    },
+    "currency": "EGP",
+    "item": {
+      "status": {
+        "inStock": "In Stock",
+        "outOfStock": "Out of Stock"
+      },
+      "sku": "SKU",
+      "perUnit": "per unit",
+      "total": "Total"
+    },
+    "empty": {
+      "title": "Your cart is empty",
+      "subtitle": "Looks like you haven't added anything to your cart yet. Start exploring our products!",
+      "actionBtn": "Start Shopping"
+    },
+    "actions": {
+      "continueShopping": "Continue Shopping",
+      "clearAll": "Clear all items"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "items": "items in your cart",
+      "shipping": {
+        "promoTitle": "Free Shipping!",
+        "promoSub": "You qualify for free delivery",
+        "label": "Shipping",
+        "free": "FREE"
+      },
+      "total": "Total",
+      "checkoutBtn": "Secure Checkout",
+      "badges": {
+        "secure": "Secure Payment",
+        "fast": "Fast Delivery"
+      }
+    }
+  },
+  "checkout": {
+    "header": {
+      "title": "Complete Your Order",
+      "subtitle": "Review your items and complete your purchase",
+      "backToCart": "Back to Cart"
+    },
+    "currency": "EGP",
+    "shipping": {
+      "title": "Shipping Address",
+      "subtitle": "Where should we deliver your order?",
+      "savedTitle": "Saved Addresses",
+      "savedSubtitle": "Select a saved address or enter a new one below",
+      "newAddressTitle": "Use a different address",
+      "newAddressSubtitle": "Enter a new shipping address manually",
+      "infoNoteTitle": "Delivery Information",
+      "infoNoteSub": "Please ensure your address is accurate for smooth delivery"
+    },
+    "form": {
+      "cityLabel": "City",
+      "cityPlaceholder": "e.g. Cairo, Alexandria, Giza",
+      "streetLabel": "Street Address",
+      "streetPlaceholder": "Street name, building number, floor, apartment...",
+      "phoneLabel": "Phone Number",
+      "phoneHint": "Egyptian numbers only"
+    },
+    "payment": {
+      "title": "Payment Method",
+      "subtitle": "Choose how you'd like to pay",
+      "codTitle": "Cash on Delivery",
+      "codSubtitle": "Pay when your order arrives at your doorstep",
+      "visaTitle": "Pay Online",
+      "visaSubtitle": "Secure payment with Credit/Debit Card via Stripe"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "itemsCount": "items",
+      "subtotal": "Subtotal",
+      "shippingLabel": "Shipping",
+      "free": "FREE",
+      "total": "Total"
+    },
+    "actions": {
+      "placeOrder": "Place Order",
+      "proceedToPayment": "Proceed to Payment"
+    },
+    "badges": {
+      "secure": "Secure",
+      "fast": "Fast Delivery",
+      "returns": "Easy Returns"
+    }
+  },
+  "orders": {
+    "breadcrumb": {
+      "home": "Home",
+      "myOrders": "My Orders"
+    },
+    "header": {
+      "title": "My Orders",
+      "subtitle": "Track and manage your",
+      "orderCountSingular": "order",
+      "orderCountPlural": "orders",
+      "continueShopping": "Continue Shopping"
+    },
+    "status": {
+      "delivered": "Delivered",
+      "paid": "Paid",
+      "processing": "Processing"
+    },
+    "info": {
+      "itemSingular": "item",
+      "itemPlural": "items",
+      "notAvailable": "N/A"
+    },
+    "currency": "EGP",
+    "actions": {
+      "details": "Details",
+      "hide": "Hide"
+    },
+    "details": {
+      "itemsTitle": "Order Items",
+      "addressTitle": "Delivery Address",
+      "summaryTitle": "Order Summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "free": "Free",
+      "total": "Total"
+    },
+    "empty": {
+      "title": "No orders yet",
+      "subtitle": "You haven't placed any orders yet. Start shopping now!",
+      "action": "Start Shopping"
+    }
+  },
+  "addresses": {
+    "header": {
+      "title": "My Addresses",
+      "subtitle": "Manage your saved delivery addresses"
+    },
+    "actions": {
+      "add": "Add Address",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "status": {
+      "loading": "Loading your addresses..."
+    },
+    "empty": {
+      "title": "No Addresses Yet",
+      "subtitle": "Add your first delivery address to make checkout faster and easier.",
+      "action": "Add Your First Address"
+    },
+    "modal": {
+      "titleAdd": "Add New Address",
+      "titleEdit": "Edit Address"
+    },
+    "form": {
+      "labelName": "Address Name",
+      "placeholderName": "e.g. Home, Work...",
+      "errorName": "Address name is required",
+      "labelDetails": "Full Address",
+      "placeholderDetails": "Enter your full address...",
+      "errorDetails": "Address details are required",
+      "labelPhone": "Phone Number",
+      "errorPhone": "Phone is required",
+      "labelCity": "City",
+      "placeholderCity": "Cairo",
+      "errorCity": "City is required",
+      "cancel": "Cancel",
+      "submit": "Add Address",
+      "save": "Save Changes"
+    }
+  },
+  "settings": {
+    "header": {
+      "title": "Account Settings",
+      "subtitle": "Update your profile information and change your password"
+    },
+    "profile": {
+      "title": "Profile Information",
+      "subtitle": "Update your personal details"
+    },
+    "messages": {
+      "updateSuccess": "Profile updated successfully!"
+    },
+    "form": {
+      "labelName": "Full Name",
+      "placeholderName": "Enter your full name",
+      "errorName": "Name is required",
+      "labelEmail": "Email Address",
+      "placeholderEmail": "Enter your email",
+      "errorEmail": "Valid email is required",
+      "labelPhone": "Phone Number",
+      "errorPhone": "Phone is required",
+      "submit": "Save Changes"
+    },
+    "accountInfo": {
+      "title": "Account Information",
+      "userId": "User ID",
+      "role": "Role",
+      "defaultRole": "User"
+    }
+  },
+  "changePassword": {
+    "status": {
+      "loading": "Loading your details..."
+    },
+    "header": {
+      "title": "Change Password",
+      "subtitle": "Update your account password"
+    },
+    "messages": {
+      "success": "Password changed successfully!"
+    },
+    "form": {
+      "labelCurrent": "Current Password",
+      "placeholderCurrent": "Enter your current password",
+      "labelNew": "New Password",
+      "placeholderNew": "Enter your new password",
+      "hintMinLength": "Must be at least 6 characters",
+      "labelConfirm": "Confirm New Password",
+      "placeholderConfirm": "Confirm your new password",
+      "submit": "Change Password"
+    },
+    "errors": {
+      "currentRequired": "Current password is required",
+      "passwordMinLength": "Must be at least 6 characters",
+      "mismatch": "Passwords do not match"
+    }
+  },
+  "account": {
+    "nav": {
+      "home": "Home",
+      "myAccount": "My Account"
+    },
+    "header": {
+      "title": "My Account",
+      "subtitle": "Manage your addresses and account settings"
+    },
+    "sidebar": {
+      "title": "My Account",
+      "addresses": "My Addresses",
+      "settings": "Settings"
+    }
+  },
+  "details": {
+    "nav": {
+      "home": "Home"
+    },
+    "info": {
+      "reviews": "reviews",
+      "currency": "EGP",
+      "inStock": "In Stock"
+    },
+    "form": {
+      "quantity": "Quantity",
+      "available": "available",
+      "totalPrice": "Total Price"
+    },
+    "actions": {
+      "addToCart": "Add to Cart",
+      "buyNow": "Buy Now",
+      "addToWishlist": "Add to Wishlist"
+    },
+    "related": {
+      "loading": "Loading recommendations...",
+      "titlePart1": "You May Also",
+      "titlePart2": "Like",
+      "emptyTitle": "No related products",
+      "emptySubtitle": "Check back later for more recommendations"
+    }
+  },
+  "reviews": {
+    "header": {
+      "customer": "Customer",
+      "reviews": "Reviews"
+    },
+    "actions": {
+      "writeReview": "Write a Review",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "form": {
+      "title": "Your Review",
+      "placeholder": "Share your experience with this product...",
+      "submit": "Submit Review"
+    },
+    "status": {
+      "loading": "Loading reviews...",
+      "anonymous": "Anonymous"
+    },
+    "empty": {
+      "title": "No reviews yet",
+      "subtitle": "Be the first to share your experience!"
+    },
+    "summary": {
+      "basedOn": "Based on",
+      "reviews": "reviews"
+    },
+    "edit": {
+      "title": "Edit your review"
+    }
   }
-
+  ,
+  "subFooter": {
+    "shipping": {
+      "title": "Free Shipping",
+      "subtitle": "On orders over 500 EGP"
+    },
+    "returns": {
+      "title": "Easy Returns",
+      "subtitle": "14-day return policy"
+    },
+    "payment": {
+      "title": "Secure Payment",
+      "subtitle": "100% secure checkout"
+    },
+    "support": {
+      "title": "24/7 Support",
+      "subtitle": "Contact us anytime"
+    }
+  },
+  "footer": {
+    "brand": {
+      "name": "FreshCart",
+      "description": "FreshCart is your one-stop destination for quality products. From fashion to electronics, we bring you the best brands at competitive prices.",
+      "address": "123 Commerce Street, New York, NY 10001"
+    },
+    "sections": {
+      "shop": {
+        "title": "Shop",
+        "allProducts": "All Products",
+        "categories": "Categories",
+        "brands": "Brands",
+        "electronics": "Electronics",
+        "menFashion": "Men's Fashion",
+        "womenFashion": "Women's Fashion"
+      },
+      "account": {
+        "title": "Account",
+        "myAccount": "My Account",
+        "orderHistory": "Order History",
+        "wishlist": "Wishlist",
+        "cart": "Shopping Cart",
+        "signIn": "Sign In",
+        "signUp": "Create Account"
+      },
+      "support": {
+        "title": "Support",
+        "contact": "Contact Us",
+        "help": "Help Center",
+        "shipping": "Shipping Info",
+        "returns": "Returns & Refunds",
+        "track": "Track Order"
+      },
+      "legal": {
+        "title": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Policy"
+      }
+    },
+    "bottom": {
+      "copyright": "© 2026 FreshCart. All rights reserved."
+    }
+  }
 }

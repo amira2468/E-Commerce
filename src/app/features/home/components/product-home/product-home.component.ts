@@ -5,10 +5,11 @@ import { RouterLink } from "@angular/router";
 import { CartService } from '../../../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { WishListService } from '../../../../core/services/wish-list.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-home',
-  imports: [RouterLink],
+  imports: [RouterLink , TranslateModule],
   templateUrl: './product-home.component.html',
   styleUrl: './product-home.component.css',
 })

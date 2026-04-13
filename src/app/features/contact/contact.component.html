@@ -1,0 +1,89 @@
+<section class="py-12 bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="card-1 lg:col-span-2 relative overflow-hidden rounded-[2.5rem] bg-[#f0f9f4] p-8 md:p-12 flex flex-col justify-center hover-scale transition-all duration-300">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-emerald-100 rounded-full opacity-50"></div>
+
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-600">{{ 'newsletter.badge' | translate }}</span>
+                                <span class="text-[10px] text-gray-500">{{ 'newsletter.subscribersCount' | translate }}</span>
+                            </div>
+                        </div>
+
+                        <div class="max-w-md">
+                            <h2 class="text-4xl font-extrabold text-slate-900 leading-tight">
+                                {{ 'newsletter.titlePart1' | translate }} <span class="text-emerald-500 underline decoration-emerald-200">{{ 'newsletter.titlePart2' | translate }}</span>
+                            </h2>
+                            <p class="text-gray-500 mt-4 text-sm font-medium">
+                                {{ 'newsletter.description' | translate }}
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-white rounded-full text-[11px] font-bold text-gray-600 shadow-sm border border-gray-50 flex items-center gap-2">
+                                <i class="fas fa-leaf text-emerald-500"></i> {{ 'newsletter.feature1' | translate }}
+                            </span>
+                            <span class="px-4 py-2 bg-white rounded-full text-[11px] font-bold text-gray-600 shadow-sm border border-gray-50 flex items-center gap-2">
+                                <i class="fas fa-truck text-emerald-500"></i> {{ 'newsletter.feature2' | translate }}
+                            </span>
+                        </div>
+
+                        <form class="flex flex-col sm:flex-row items-center gap-3 mt-4">
+                            <div class="relative w-full max-w-md">
+                                <input
+                                    type="email"
+                                    [placeholder]="'newsletter.inputPlaceholder' | translate"
+                                    class="w-full px-6 py-4 rounded-2xl border-none ring-1 ring-gray-200 focus:ring-2 focus:ring-emerald-500 outline-none transition-all text-sm font-medium"
+                                />
+                            </div>
+                            <button class="w-full sm:w-auto px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-emerald-200">
+                                {{ 'newsletter.subscribeBtn' | translate }} <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                        </form>
+                        <p class="text-[10px] text-gray-400">{{ 'newsletter.unsubscribeNote' | translate }}</p>
+                    </div>
+                </div>
+                <div class="card-2 relative overflow-hidden rounded-[2.5rem] bg-[#1a1c1e] p-8 flex flex-col justify-between group hover-scale transition-all duration-300">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-3xl group-hover:bg-emerald-500/20 transition-all"></div>
+
+                    <div class="relative z-10 space-y-4">
+                        <span class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md text-emerald-400 text-[10px] font-bold px-3 py-1.5 rounded-lg">
+                            <i class="fas fa-mobile-alt"></i> {{ 'appSection.badge' | translate }}
+                        </span>
+                        <h3 class="text-2xl font-bold text-white leading-snug">{{ 'appSection.title' | translate }}</h3>
+                        <p class="text-gray-400 text-xs">{{ 'appSection.description' | translate }}</p>
+                    </div>
+
+                    <div class="relative z-10 space-y-3 mt-8">
+                        <button class="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl p-3 flex items-center gap-3 transition-all">
+                            <i class="fab fa-apple text-2xl"></i>
+                            <div class="text-left">
+                                <p class="text-[9px] text-gray-400 leading-none">{{ 'appSection.downloadOn' | translate }}</p>
+                                <p class="text-sm font-bold">{{ 'appSection.appStore' | translate }}</p>
+                            </div>
+                        </button>
+                        <button class="w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl p-3 flex items-center gap-3 transition-all">
+                            <i class="fab fa-google-play text-xl"></i>
+                            <div class="text-left">
+                                <p class="text-[9px] text-gray-400 leading-none">{{ 'appSection.getItOn' | translate }}</p>
+                                <p class="text-sm font-bold">{{ 'appSection.googlePlay' | translate }}</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="relative z-10 mt-6 flex items-center gap-2">
+                        <div class="flex text-amber-400 text-[10px]">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-[10px] text-gray-400">{{ 'appSection.stats' | translate }}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>

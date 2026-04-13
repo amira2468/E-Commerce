@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-contact',
   imports: [TranslateModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css',
+  templateUrl: './contact.component.html',
+  styleUrl: './contact.component.css',
 })
-export class FooterComponent {
+export class ContactComponent {
 
 }

@@ -31,6 +31,7 @@
     <div class="hidden lg:block grow max-w-md">
       <div class="relative">
         <input
+        (keyup.enter)="goToSearch($event)"
           type="text"
           [placeholder]="'NAV.SEARCH_PLACEHOLDER' | translate"
           class="w-full rounded-full border border-gray-200 bg-gray-50 px-6 py-2 pr-12 outline-none transition-all focus:border-emerald-500 focus:ring-emerald-500"
@@ -118,7 +119,9 @@
       </div>
 
       <!-- Search Mobile -->
-      <button class="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all hover:bg-gray-100 lg:hidden">
+      <button
+      (keyup.enter)="goToSearch($event)"
+      class="flex h-10 w-10 items-center justify-center rounded-full text-gray-600 transition-all hover:bg-gray-100 lg:hidden">
         <i class="fas fa-search text-lg"></i>
       </button>
 

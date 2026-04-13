@@ -1,12 +1,11 @@
 <section class="py-10 border-t border-gray-100 mt-6">
   <div class="container max-w-6xl">
 
-    <!-- Section Header -->
     <div class="flex items-center justify-between mb-8">
       <div class="flex items-center gap-3">
         <div class="w-1.5 h-7 bg-emerald-500 rounded-full"></div>
         <h2 class="text-2xl font-bold text-slate-800">
-          Customer <span class="text-emerald-500">Reviews</span>
+          {{ 'reviews.header.customer' | translate }} <span class="text-emerald-500">{{ 'reviews.header.reviews' | translate }}</span>
         </h2>
         @if (totalReviews() > 0) {
           <span class="bg-emerald-50 text-emerald-600 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100">
@@ -15,25 +14,22 @@
         }
       </div>
 
-      <!-- Write Review Button -->
       @if (isLoggedIn() && !userReview()) {
         <button
           (click)="showAddForm.set(!showAddForm())"
           class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all active:scale-95">
           <i class="far fa-edit"></i>
-          Write a Review
+          {{ 'reviews.actions.writeReview' | translate }}
         </button>
       }
     </div>
 
-    <!-- Add Review Form -->
     @if (showAddForm() && isLoggedIn()) {
       <div class="bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 rounded-2xl p-6 mb-8">
         <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <i class="far fa-star text-emerald-500"></i> Your Review
+          <i class="far fa-star text-emerald-500"></i> {{ 'reviews.form.title' | translate }}
         </h3>
 
-        <!-- Star Rating -->
         <div class="flex items-center gap-1 mb-4">
           @for (star of starsArray; track star) {
             <button
@@ -51,17 +47,15 @@
           }
         </div>
 
-        <!-- Comment -->
         <textarea
           [(ngModel)]="newComment"
           [ngModel]="newComment()"
           (ngModelChange)="newComment.set($event)"
           rows="4"
-          placeholder="Share your experience with this product..."
+          [placeholder]="'reviews.form.placeholder' | translate"
           class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-100 transition-all resize-none mb-4">
         </textarea>
 
-        <!-- Actions -->
         <div class="flex items-center gap-3">
           <button
             (click)="submitReview()"
@@ -72,41 +66,34 @@
             } @else {
               <i class="fas fa-paper-plane"></i>
             }
-            Submit Review
+            {{ 'reviews.form.submit' | translate }}
           </button>
           <button
             (click)="showAddForm.set(false)"
             class="text-sm text-gray-500 hover:text-gray-700 px-4 py-2.5 rounded-xl hover:bg-gray-100 transition-all">
-            Cancel
+            {{ 'reviews.actions.cancel' | translate }}
           </button>
         </div>
       </div>
     }
 
-    <!-- Loading -->
     @if (isLoading()) {
       <div class="flex flex-col items-center justify-center py-20 gap-3">
         <i class="fa-solid fa-circle-notch fa-spin text-3xl text-emerald-500"></i>
-        <p class="text-sm text-gray-400 animate-pulse">Loading reviews...</p>
+        <p class="text-sm text-gray-400 animate-pulse">{{ 'reviews.status.loading' | translate }}</p>
       </div>
-
     } @else {
-
       @if (reviews().length === 0) {
-        <!-- Empty State -->
         <div class="flex flex-col items-center justify-center py-16 gap-3 text-center bg-gray-50 rounded-2xl">
           <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100">
             <i class="far fa-star text-3xl text-gray-300"></i>
           </div>
-          <p class="text-gray-600 font-semibold">No reviews yet</p>
-          <p class="text-sm text-gray-400">Be the first to share your experience!</p>
+          <p class="text-gray-600 font-semibold">{{ 'reviews.empty.title' | translate }}</p>
+          <p class="text-sm text-gray-400">{{ 'reviews.empty.subtitle' | translate }}</p>
         </div>
-
       } @else {
-
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-          <!-- Left: Summary -->
           <div class="lg:col-span-1">
             <div class="bg-gray-50 rounded-2xl p-6 sticky top-24">
               <div class="text-center mb-5">
@@ -116,10 +103,13 @@
                     <i [class]="star"></i>
                   }
                 </div>
-                <p class="text-sm text-gray-500">Based on <span class="font-semibold text-gray-700">{{ totalReviews() }}</span> reviews</p>
+                <p class="text-sm text-gray-500">
+                  {{ 'reviews.summary.basedOn' | translate }}
+                  <span class="font-semibold text-gray-700">{{ totalReviews() }}</span>
+                  {{ 'reviews.summary.reviews' | translate }}
+                </p>
               </div>
 
-              <!-- Star Bars -->
               <div class="space-y-2.5">
                 @for (i of [4,3,2,1,0]; track i) {
                   <div class="flex items-center gap-3 text-sm">
@@ -138,18 +128,15 @@
             </div>
           </div>
 
-          <!-- Right: Reviews List -->
           <div class="lg:col-span-2 space-y-4">
             @for (review of reviews(); track review._id) {
 
-              <!-- Edit Mode -->
               @if (editingReviewId() === review._id) {
                 <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 space-y-4">
                   <h4 class="font-semibold text-emerald-700 text-sm flex items-center gap-2">
-                    <i class="far fa-edit"></i> Edit your review
+                    <i class="far fa-edit"></i> {{ 'reviews.edit.title' | translate }}
                   </h4>
 
-                  <!-- Edit Stars -->
                   <div class="flex items-center gap-1">
                     @for (star of starsArray; track star) {
                       <button
@@ -164,7 +151,6 @@
                     }
                   </div>
 
-                  <!-- Edit Comment -->
                   <textarea
                     [ngModel]="editComment()"
                     (ngModelChange)="editComment.set($event)"
@@ -182,42 +168,38 @@
                       } @else {
                         <i class="fas fa-check"></i>
                       }
-                      Save
+                      {{ 'reviews.actions.save' | translate }}
                     </button>
                     <button
                       (click)="cancelEdit()"
                       class="text-sm text-gray-500 hover:text-gray-700 px-4 py-2 rounded-xl hover:bg-white transition-all">
-                      Cancel
+                      {{ 'reviews.actions.cancel' | translate }}
                     </button>
                   </div>
                 </div>
 
               } @else {
 
-                <!-- Review Card -->
                 <div class="bg-white border border-gray-100 rounded-2xl p-5 space-y-3 hover:border-gray-200 hover:shadow-sm transition-all">
 
-                  <!-- Header -->
                   <div class="flex items-start justify-between gap-3">
                     <div class="flex items-center gap-3">
                       <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm uppercase shrink-0">
                         {{ review.user?.name?.charAt(0) ?? '?' }}
                       </div>
                       <div>
-                        <p class="font-semibold text-gray-800 text-sm">{{ review.user?.name ?? 'Anonymous' }}</p>
+                        <p class="font-semibold text-gray-800 text-sm">{{ review.user?.name ?? ('reviews.status.anonymous' | translate) }}</p>
                         <p class="text-xs text-gray-400">{{ review.createdAt | date: 'mediumDate' }}</p>
                       </div>
                     </div>
 
                     <div class="flex items-center gap-3 shrink-0">
-                      <!-- Stars -->
                       <div class="flex items-center gap-0.5 text-amber-400 text-sm">
                         @for (star of getStars(review.rating); track $index) {
                           <i [class]="star"></i>
                         }
                       </div>
 
-                      <!-- Owner Actions -->
                       @if ((review.user?._id ?? review.user?.id) === currentUserId()) {
                         <div class="flex items-center gap-1">
                           <button
@@ -235,13 +217,11 @@
                     </div>
                   </div>
 
-                  <!-- Comment -->
                   @if (review.review || review.comment) {
                     <p class="text-sm text-gray-600 leading-relaxed">
                       {{ review.review ?? review.comment }}
                     </p>
                   }
-
                 </div>
               }
             }

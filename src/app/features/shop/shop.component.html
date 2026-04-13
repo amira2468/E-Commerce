@@ -1,17 +1,17 @@
 <div class="bg-gradient-to-r from-emerald-700 to-emerald-400 py-20 mb-8">
   <div class="container">
     <nav class="flex items-center gap-2 text-sm text-white/80 mb-4">
-      <a routerLink="/" class="hover:text-white transition-colors cursor-pointer">Home</a>
+      <a routerLink="/" class="hover:text-white transition-colors cursor-pointer">{{ 'allProducts.breadcrumb.home' | translate }}</a>
       <span>/</span>
-      <span class="text-white font-extrabold">All Products</span>
+      <span class="text-white font-extrabold">{{ 'allProducts.breadcrumb.current' | translate }}</span>
     </nav>
     <div class="flex items-center gap-4">
       <div class="w-14 h-20 bg-white/20 rounded-2xl flex items-center justify-center">
         <i class="fas fa-box-open text-white text-2xl"></i>
       </div>
       <div>
-        <h1 class="text-3xl font-extrabold text-white">All Products</h1>
-        <p class="text-white/80 text-sm mt-1">Explore our complete product collection</p>
+        <h1 class="text-3xl font-extrabold text-white">{{ 'allProducts.header.title' | translate }}</h1>
+        <p class="text-white/80 text-sm mt-1">{{ 'allProducts.header.subtitle' | translate }}</p>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 <div class="container">
   @if (!isLoading() && productList().length > 0) {
     <p class="text-gray-500 text-sm mb-4">
-      Showing <span class="font-semibold text-slate-800">{{ productList().length }}</span> products
+      {{ 'allProducts.showingPrefix' | translate }} <span class="font-semibold text-slate-800">{{ productList().length }}</span> {{ 'allProducts.showingSuffix' | translate }}
     </p>
   }
 
@@ -87,10 +87,10 @@
             <div class="flex items-center justify-between pt-1.5">
               <span>
                 @if (product.priceAfterDiscount) {
-                  <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount }} EGP</p>
-                  <p class="text-xs text-gray-400 line-through">{{ product.price }} EGP</p>
+                  <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount }} {{ 'allProducts.currency' | translate }}</p>
+                  <p class="text-xs text-gray-400 line-through">{{ product.price }} {{ 'allProducts.currency' | translate }}</p>
                 } @else {
-                  <p class="text-base font-bold text-gray-800">{{ product.price }} EGP</p>
+                  <p class="text-base font-bold text-gray-800">{{ product.price }} {{ 'allProducts.currency' | translate }}</p>
                 }
               </span>
               <button (click)="addToCart(product.id)" class="w-9 h-9 cursor-pointer bg-emerald-600 text-white rounded-lg flex items-center justify-center hover:bg-emerald-700 transition-all shadow-sm">
@@ -104,11 +104,11 @@
           <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
             <i class="fas fa-box-open text-5xl text-gray-300"></i>
           </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-2">No Products Found</h3>
-          <p class="text-gray-500">Try adjusting your search or filters.</p>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">{{ 'allProducts.emptyState.title' | translate }}</h3>
+          <p class="text-gray-500">{{ 'allProducts.emptyState.subtitle' | translate }}</p>
           <a routerLink="/shop"
-    class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl transition-colors">
-    <i class="fas fa-th-large"></i> View All Products
+    class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl transition-colors mt-4">
+    <i class="fas fa-th-large"></i> {{ 'allProducts.emptyState.actionBtn' | translate }}
     </a>
         </div>
       }

@@ -3,10 +3,11 @@ import { RouterLink } from '@angular/router';
 import { DatePipe, DecimalPipe, SlicePipe, isPlatformBrowser } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
 import { Orders } from './orders.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-orders',
-  imports: [RouterLink, DatePipe, DecimalPipe, SlicePipe],
+  imports: [RouterLink, DatePipe, DecimalPipe, SlicePipe , TranslateModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css',
 })
@@ -27,7 +28,7 @@ export class OrdersComponent implements OnInit {
       if (token) {
         const id = JSON.parse(localStorage.getItem('UserData')!).id;
         this.userId.set(id);
-        this.getUserOrders(); 
+        this.getUserOrders();
       }
     }
   }

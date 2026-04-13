@@ -3,10 +3,11 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { isPlatformBrowser } from '@angular/common';
 import { AddressService } from '../../core/services/adresses.service';
 import { ChangePasswordComponent } from "../change-password/change-password.component";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-settings',
-  imports: [ReactiveFormsModule, ChangePasswordComponent],
+  imports: [ReactiveFormsModule, ChangePasswordComponent , TranslateModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css',
 })

@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AddressService } from '../../core/services/adresses.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Custom validator - password match
 function passwordMatch(control: AbstractControl) {
@@ -11,7 +12,7 @@ function passwordMatch(control: AbstractControl) {
 
 @Component({
   selector: 'app-change-password',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule , TranslateModule],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css',
 })

@@ -1,17 +1,14 @@
-<!-- Page Header -->
 <div class="bg-emerald-600 py-10 mb-8">
   <div class="container">
 
-    <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-white/80 mb-6">
-      <a routerLink="/home" class="hover:text-white transition-colors">Home</a>
+      <a routerLink="/home" class="hover:text-white transition-colors">{{ 'subCategories.breadcrumb.home' | translate }}</a>
       <span>/</span>
-      <a routerLink="/categories" class="hover:text-white transition-colors">Categories</a>
+      <a routerLink="/categories" class="hover:text-white transition-colors">{{ 'subCategories.breadcrumb.categories' | translate }}</a>
       <span>/</span>
       <span class="text-white font-medium">{{ categoryDetails().name }}</span>
     </nav>
 
-    <!-- Title -->
     <div class="flex items-center gap-4">
       <div class="w-14 h-14 bg-white/20 rounded-2xl overflow-hidden flex items-center justify-center">
         <img
@@ -22,25 +19,23 @@
       </div>
       <div>
         <h1 class="text-3xl font-bold text-white">{{ categoryDetails().name }}</h1>
-        <p class="text-white/80 text-sm mt-1">Choose a subcategory to browse products</p>
+        <p class="text-white/80 text-sm mt-1">{{ 'subCategories.header.subtitle' | translate }}</p>
       </div>
     </div>
 
   </div>
 </div>
 
-<!-- SubCategories -->
 <section class="pb-12">
   <div class="container">
 
-    <!-- Back + Count -->
     <div class="flex items-center justify-between mb-6">
       <a routerLink="/categories" class="flex items-center gap-2 text-sm text-gray-500 hover:text-emerald-600 transition-colors cursor-pointer">
-        <i class="fas fa-arrow-left text-xs"></i> Back to Categories
+        <i class="fas fa-arrow-left text-xs"></i> {{ 'subCategories.backToCategories' | translate }}
       </a>
       <p class="text-sm text-gray-500">
         <span class="font-semibold text-slate-800">{{ subCategoriesList().length }}</span>
-        Subcategories in {{ categoryDetails().name }}
+        {{ 'subCategories.countText' | translate }} {{ categoryDetails().name }}
       </p>
     </div>
     @if (isLoading()) {
@@ -51,33 +46,29 @@
           <div class="absolute inset-0 border-4 border-emerald-100 rounded-full"></div>
           <div class="absolute inset-0 border-4 border-t-emerald-600 border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
         </div>
-        <p class="text-gray-500 font-medium animate-pulse">Loading Categories...</p>
+        <p class="text-gray-500 font-medium animate-pulse">{{ 'subCategories.loading' | translate }}</p>
       </div>
     </div>
   </section>
 }
-    <!-- Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
       @for (sub of subCategoriesList(); track sub._id) {
         <div class="bg-white border border-gray-100 rounded-2xl p-6 cursor-pointer group hover:border-emerald-200 hover:shadow-md transition-all duration-300">
 
-          <!-- Folder Icon -->
           <div class="w-10 h-10 flex items-center justify-center text-emerald-600 mb-4">
             <i class="fas fa-folder-open text-3xl"></i>
           </div>
 
-          <!-- Name -->
           <h3 class="text-sm font-semibold text-slate-700 group-hover:text-emerald-600 transition-colors">
             {{ sub.name }}
           </h3>
 
-          <!-- Browse Link -->
-           <a
+          <a
 [routerLink]="['/shop']"
   [queryParams]="{ subcategory: sub._id }"
   class="text-xs text-emerald-500 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-1 mt-2">
-  Browse Products <i class="fas fa-arrow-right text-[10px]"></i>
+  {{ 'subCategories.browse' | translate }} <i class="fas fa-arrow-right text-[10px]"></i>
 </a>
 
         </div>

@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ProductsService } from '../../core/services/products.service';
 import { Product } from '../../core/models/product.interface';
@@ -8,7 +9,7 @@ import { WishListService } from '../../core/services/wish-list.service';
 
 @Component({
   selector: 'app-shop',
-  imports: [RouterLink],
+  imports: [RouterLink , TranslateModule],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
 })

@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="text-3xl font-semibold">
       <span class="w-1 h-7 bg-emerald-600 rounded-full inline-block"></span>
-      Featured <span class="text-primary">products</span>
+      {{ 'products.featuredTitle' | translate }} <span class="text-primary">{{ 'products.featuredSubtitle' | translate }}</span>
     </h2>
 
 @if (isLoading()) {
@@ -43,14 +43,12 @@
 
         <div class="relative bg-white border border-gray-100 rounded-2xl p-4 transition-all duration-300 group font-sans hover:border-gray-200">
 
-          <!-- Discount Badge -->
           @if (product.priceAfterDiscount) {
             <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
               -{{ getDiscount(product.price, product.priceAfterDiscount) }}%
             </span>
           }
 
-          <!-- Image -->
           <div class="relative overflow-hidden rounded-xl bg-gray-50 mb-4 aspect-square flex items-center justify-center">
             <img
               [src]="product.imageCover"
@@ -58,7 +56,6 @@
               class="w-4/5 h-4/5 object-contain transition-transform duration-300 group-hover:scale-105"
             />
 
-            <!-- Action Icons -->
             <div class="absolute top-2 right-2 flex flex-col gap-2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
 
               <button
@@ -80,7 +77,6 @@
             </div>
           </div>
 
-          <!-- Info -->
           <div class="space-y-1.5">
 
             <p class="text-[11px] uppercase tracking-widest text-gray-400 truncate">
@@ -113,10 +109,10 @@
             <div class="flex items-center justify-between pt-1.5">
               <span>
                 @if (product.priceAfterDiscount) {
-                  <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount }} EGP</p>
-                  <p class="text-xs text-gray-400 line-through">{{ product.price }} EGP</p>
+                  <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount }} {{ 'products.currency' | translate }}</p>
+                  <p class="text-xs text-gray-400 line-through">{{ product.price }} {{ 'products.currency' | translate }}</p>
                 } @else {
-                  <p class="text-base font-bold text-gray-800">{{ product.price }} EGP</p>
+                  <p class="text-base font-bold text-gray-800">{{ product.price }} {{ 'products.currency' | translate }}</p>
                 }
               </span>
               <button

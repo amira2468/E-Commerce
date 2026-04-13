@@ -1,45 +1,43 @@
 <section>
   <div class="container py-8 px-4">
 
-    <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6">
-      <a routerLink="/home" class="hover:text-[#138D46] transition-colors">Home</a>
+      <a routerLink="/home" class="hover:text-[#138D46] transition-colors">{{ 'orders.breadcrumb.home' | translate }}</a>
       <i class="fa-solid fa-chevron-right text-xs text-gray-300"></i>
-      <span class="text-gray-800 font-medium">My Orders</span>
+      <span class="text-gray-800 font-medium">{{ 'orders.breadcrumb.myOrders' | translate }}</span>
     </nav>
 
-    <!-- Header -->
     <div class="flex items-center justify-between mb-8">
       <div class="flex items-center gap-4">
         <div class="bg-[#138D46] text-white w-12 h-12 flex items-center justify-center rounded-xl">
           <i class="fa-solid fa-box-archive text-xl"></i>
         </div>
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">My Orders</h1>
+          <h1 class="text-3xl font-bold text-gray-900">{{ 'orders.header.title' | translate }}</h1>
           <p class="text-gray-500 text-sm mt-0.5">
-            Track and manage your
-            <span class="font-semibold text-gray-700">{{ orders().length }} order{{ orders().length !== 1 ? 's' : '' }}</span>
+            {{ 'orders.header.subtitle' | translate }}
+            <span class="font-semibold text-gray-700">
+              {{ orders().length }}
+              {{ (orders().length === 1 ? 'orders.header.orderCountSingular' : 'orders.header.orderCountPlural') | translate }}
+            </span>
           </p>
         </div>
       </div>
       <a
         routerLink="/shop"
         class="hidden sm:flex items-center gap-2 text-[#138D46] font-semibold text-sm hover:underline">
-        <i class="fa-solid fa-cart-shopping"></i> Continue Shopping
+        <i class="fa-solid fa-cart-shopping"></i> {{ 'orders.header.continueShopping' | translate }}
       </a>
     </div>
 
-    <!-- Orders List -->
     <div class="flex flex-col gap-5">
 
       @for (order of orders(); track order._id) {
 
         <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
 
-          <!-- Order Summary Row -->
           <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5">
 
-            <!-- Product Images Stack -->
             <div class="relative w-16 h-16 shrink-0">
               @for (item of order.cartItems.slice(0, 1); track item._id) {
                 <div class="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden flex items-center justify-center">
@@ -57,21 +55,19 @@
               }
             </div>
 
-            <!-- Order Info -->
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-3 flex-wrap mb-2">
-                <!-- Status Badge -->
                 @if (order.isDelivered) {
                   <span class="inline-flex items-center gap-1.5 bg-green-50 text-[#138D46] text-xs font-bold px-3 py-1 rounded-full border border-green-100">
-                    <i class="fa-solid fa-circle-check"></i> Delivered
+                    <i class="fa-solid fa-circle-check"></i> {{ 'orders.status.delivered' | translate }}
                   </span>
                 } @else if (order.isPaid) {
                   <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full border border-blue-100">
-                    <i class="fa-solid fa-circle-check"></i> Paid
+                    <i class="fa-solid fa-circle-check"></i> {{ 'orders.status.paid' | translate }}
                   </span>
                 } @else {
                   <span class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-600 text-xs font-bold px-3 py-1 rounded-full border border-amber-100">
-                    <i class="fa-solid fa-clock"></i> Processing
+                    <i class="fa-solid fa-clock"></i> {{ 'orders.status.processing' | translate }}
                   </span>
                 }
                 <span class="text-gray-400 font-medium text-sm"># {{ order.id }}</span>
@@ -84,25 +80,24 @@
                 </span>
                 <span class="flex items-center gap-1.5">
                   <i class="fa-solid fa-box text-gray-400"></i>
-                  {{ order.cartItems.length }} items
+                  {{ order.cartItems.length }} {{ (order.cartItems.length === 1 ? 'orders.info.itemSingular' : 'orders.info.itemPlural') | translate }}
                 </span>
                 <span class="flex items-center gap-1.5">
                   <i class="fa-solid fa-location-dot text-gray-400"></i>
-                  {{ order.shippingAddress?.city ?? 'N/A' }}
+                  {{ order.shippingAddress?.city ?? ('orders.info.notAvailable' | translate) }}
                 </span>
               </div>
             </div>
 
-            <!-- Price & Toggle -->
             <div class="flex items-center gap-4 sm:gap-6 w-full sm:w-auto">
               <div>
                 <span class="text-2xl font-black text-gray-900">{{ order.totalOrderPrice | number }}</span>
-                <span class="text-sm text-gray-500 ml-1">EGP</span>
+                <span class="text-sm text-gray-500 ml-1">{{ 'orders.currency' | translate }}</span>
               </div>
               <button
                 (click)="order._expanded = !order._expanded"
                 class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors focus:outline-none">
-                {{ order._expanded ? 'Hide' : 'Details' }}
+                {{ (order._expanded ? 'orders.actions.hide' : 'orders.actions.details') | translate }}
                 <i class="fa-solid text-xs transition-transform duration-200"
                   [class.fa-chevron-up]="order._expanded"
                   [class.fa-chevron-down]="!order._expanded"></i>
@@ -111,14 +106,12 @@
 
           </div>
 
-          <!-- Expandable Details -->
           @if (order._expanded) {
             <div class="border-t border-gray-100 px-5 pb-5 pt-4">
 
-              <!-- Order Items -->
               <div class="mb-6">
                 <div class="flex items-center gap-2 text-sm font-bold text-[#138D46] mb-4">
-                  <i class="fa-solid fa-list-ul"></i> Order Items
+                  <i class="fa-solid fa-list-ul"></i> {{ 'orders.details.itemsTitle' | translate }}
                 </div>
                 <div class="flex flex-col divide-y divide-gray-50">
                   @for (item of order.cartItems; track item._id) {
@@ -132,23 +125,21 @@
                       </div>
                       <div class="flex-1 min-w-0">
                         <p class="text-sm font-semibold text-gray-800 truncate">{{ item.product.title }}</p>
-                        <p class="text-xs text-gray-400 mt-0.5">{{ item.count }} × {{ item.price | number }} EGP</p>
+                        <p class="text-xs text-gray-400 mt-0.5">{{ item.count }} × {{ item.price | number }} {{ 'orders.currency' | translate }}</p>
                       </div>
                       <div class="text-sm font-bold text-gray-900 shrink-0">
-                        {{ item.count * item.price | number }} <span class="text-xs font-normal text-gray-400">EGP</span>
+                        {{ item.count * item.price | number }} <span class="text-xs font-normal text-gray-400">{{ 'orders.currency' | translate }}</span>
                       </div>
                     </div>
                   }
                 </div>
               </div>
 
-              <!-- Bottom: Delivery + Summary -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                <!-- Delivery Address -->
                 <div class="bg-gray-50 rounded-xl p-4">
                   <div class="flex items-center gap-2 text-sm font-bold text-gray-700 mb-3">
-                    <i class="fa-solid fa-location-dot text-[#138D46]"></i> Delivery Address
+                    <i class="fa-solid fa-location-dot text-[#138D46]"></i> {{ 'orders.details.addressTitle' | translate }}
                   </div>
                   <p class="text-sm font-semibold text-gray-800">{{ order.shippingAddress?.city }}</p>
                   <p class="text-sm text-gray-500 mt-1">{{ order.shippingAddress?.details }}</p>
@@ -160,22 +151,21 @@
                   }
                 </div>
 
-                <!-- Order Summary -->
                 <div class="bg-amber-50 border border-amber-100 rounded-xl p-4">
                   <div class="flex items-center gap-2 text-sm font-bold text-amber-700 mb-3">
-                    <i class="fa-solid fa-receipt text-amber-500"></i> Order Summary
+                    <i class="fa-solid fa-receipt text-amber-500"></i> {{ 'orders.details.summaryTitle' | translate }}
                   </div>
                   <div class="flex justify-between text-sm text-gray-600 mb-2">
-                    <span>Subtotal</span>
-                    <span class="font-semibold">{{ order.totalOrderPrice | number }} EGP</span>
+                    <span>{{ 'orders.details.subtotal' | translate }}</span>
+                    <span class="font-semibold">{{ order.totalOrderPrice | number }} {{ 'orders.currency' | translate }}</span>
                   </div>
                   <div class="flex justify-between text-sm text-gray-600 mb-3">
-                    <span>Shipping</span>
-                    <span class="font-semibold text-[#138D46]">Free</span>
+                    <span>{{ 'orders.details.shipping' | translate }}</span>
+                    <span class="font-semibold text-[#138D46]">{{ 'orders.details.free' | translate }}</span>
                   </div>
                   <div class="flex justify-between text-base font-black text-gray-900 border-t border-amber-200 pt-3">
-                    <span>Total</span>
-                    <span>{{ order.totalOrderPrice | number }} EGP</span>
+                    <span>{{ 'orders.details.total' | translate }}</span>
+                    <span>{{ order.totalOrderPrice | number }} {{ 'orders.currency' | translate }}</span>
                   </div>
                 </div>
 
@@ -190,12 +180,12 @@
           <div class="mx-auto flex h-40 w-40 items-center justify-center rounded-full bg-gray-50 mb-8">
             <i class="fa-solid fa-box-open text-6xl text-gray-300"></i>
           </div>
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">No orders yet</h2>
-          <p class="text-gray-500 mb-10 text-lg">You haven't placed any orders yet. Start shopping now!</p>
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ 'orders.empty.title' | translate }}</h2>
+          <p class="text-gray-500 mb-10 text-lg">{{ 'orders.empty.subtitle' | translate }}</p>
           <button
             routerLink="/shop"
             class="inline-flex items-center gap-3 rounded-full bg-[#138D46] px-8 py-4 text-base font-semibold text-white hover:bg-green-700 transition-colors shadow-sm cursor-pointer">
-            Start Shopping
+            {{ 'orders.empty.action' | translate }}
             <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>

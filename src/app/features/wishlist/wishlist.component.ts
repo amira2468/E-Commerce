@@ -5,10 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { WishList } from './models/wish-list.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-wishlist',
-  imports: [RouterLink],
+  imports: [RouterLink,TranslateModule],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.css',
 })
@@ -19,6 +20,7 @@ export class WishlistComponent implements OnInit {
   private readonly pLATFORM_ID = inject(PLATFORM_ID)
 
   wishList = signal<WishList[]>([]);
+    isLoading = signal<boolean>(false);
 
   ngOnInit(): void {
         if(isPlatformBrowser(this.pLATFORM_ID)){
@@ -26,12 +28,15 @@ export class WishlistComponent implements OnInit {
   }
 
 getWishList(): void {
+    this.isLoading = signal<boolean>(true);
   this.wishListService.getLoggedUser().subscribe({
     next: (res) => {
       console.log(res);
       this.wishList.set(res.data);
       // this.wishListService.wishListCount.set(res.count);
       this.wishListService.wishListCount.set(res.data.length);
+        this.isLoading = signal<boolean>(false);
+
 
     },
     error: (err) => console.log(err),

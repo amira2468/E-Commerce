@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, computed, inject, Inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../core/auth/services/auth.service';
 import { platformBrowser } from '@angular/platform-browser';
 import { CartService } from '../../core/services/cart.service';
@@ -18,6 +18,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 })
 export class NavbarComponent implements OnInit {
 
+  private readonly router  = inject(Router);
   private readonly authService  = inject(AuthService);
   private readonly cartService = inject(CartService)
   private readonly wishListService = inject(WishListService)
@@ -90,6 +91,11 @@ export class NavbarComponent implements OnInit {
 // Translate
 changeLan(lang:any):void{
 this.myTranslateService.changeLang(lang)
+}
+
+// Search
+goToSearch(event: any): void {
+  this.router.navigate(['/search'], { queryParams: { q: event.target.value } });
 }
 
   isDrawerOpen = false;

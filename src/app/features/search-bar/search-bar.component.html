@@ -1,0 +1,385 @@
+<div class="min-h-screen bg-gray-50">
+
+  <!-- Mobile Filter Drawer Overlay -->
+  <div
+    (click)="isFilterOpen = false"
+    [class.opacity-100]="isFilterOpen"
+    [class.opacity-0]="!isFilterOpen"
+    [class.pointer-events-auto]="isFilterOpen"
+    [class.pointer-events-none]="!isFilterOpen"
+    class="fixed inset-0 z-40 bg-black/40 transition-opacity duration-300 lg:hidden">
+  </div>
+
+  <!-- Mobile Filter Drawer -->
+  <div
+    [class.translate-x-0]="isFilterOpen"
+    [class.-translate-x-full]="!isFilterOpen"
+    class="fixed top-0 left-0 z-50 h-screen w-80 overflow-y-auto bg-white p-6 shadow-2xl transition-transform duration-300 lg:hidden">
+
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="font-bold text-gray-900 text-lg">Filters</h3>
+      <button (click)="isFilterOpen = false" class="rounded-full bg-gray-100 p-2 text-gray-400 hover:bg-gray-200">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Categories -->
+    <div class="mb-6">
+      <div class="flex items-center justify-between mb-3">
+        <h4 class="font-bold text-gray-800 text-sm">Categories</h4>
+        @if (selectedCategories().length > 0) {
+          <span class="text-xs bg-emerald-500 text-white px-2 py-0.5 rounded-full font-bold">
+            {{ selectedCategories().length }} selected
+          </span>
+        }
+      </div>
+      <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+        @for (cat of categories(); track cat._id) {
+          <label class="flex items-center gap-2.5 cursor-pointer group">
+            <input type="checkbox"
+              [checked]="isCategorySelected(cat._id)"
+              (change)="toggleCategory(cat._id)"
+              class="w-4 h-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"/>
+            <span class="text-sm text-gray-600 group-hover:text-emerald-600 transition-colors">{{ cat.name }}</span>
+          </label>
+        }
+      </div>
+    </div>
+
+    <!-- Price Range -->
+    <div class="mb-6">
+      <h4 class="font-bold text-gray-800 text-sm mb-3">Price Range</h4>
+      <div class="flex gap-2 mb-3">
+        <div class="flex-1">
+          <label class="text-xs text-gray-400 mb-1 block">Min (EGP)</label>
+          <input type="number" [ngModel]="minPrice()" (ngModelChange)="minPrice.set($event)" (change)="search()"
+            placeholder="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500"/>
+        </div>
+        <div class="flex-1">
+          <label class="text-xs text-gray-400 mb-1 block">Max (EGP)</label>
+          <input type="number" [ngModel]="maxPrice()" (ngModelChange)="maxPrice.set($event)" (change)="search()"
+            placeholder="No limit" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500"/>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <button (click)="setPriceRange(0, 500)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 500</button>
+        <button (click)="setPriceRange(0, 1000)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 1K</button>
+        <button (click)="setPriceRange(0, 5000)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 5K</button>
+        <button (click)="setPriceRange(0, 10000)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 10K</button>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex gap-3">
+      <button (click)="clearAllFilters(); isFilterOpen = false"
+        class="flex-1 py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-red-50 hover:text-red-500 transition-colors">
+        Clear All
+      </button>
+      <button (click)="isFilterOpen = false"
+        class="flex-1 py-2.5 rounded-xl bg-emerald-500 text-white text-sm font-bold hover:bg-emerald-600 transition-colors">
+        Apply Filters
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="container py-4">
+    <nav class="flex items-center gap-2 text-sm text-gray-500">
+      <a routerLink="/" class="hover:text-emerald-600 transition-colors">Home</a>
+      <i class="fas fa-chevron-right text-xs text-gray-300"></i>
+      <span class="text-gray-800 font-medium">Search Results</span>
+    </nav>
+  </div>
+
+  <!-- Search Input -->
+  <div class="container pb-4">
+    <div class="relative max-w-2xl">
+      <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+      <input
+        type="text"
+        [ngModel]="searchKeyword()"
+        (ngModelChange)="searchKeyword.set($event); onSearchInput()"
+        placeholder="Search for products..."
+        class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-white outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100 transition-all text-sm"
+      />
+    </div>
+  </div>
+
+  <!-- Results Title -->
+  <div class="container pb-4">
+    @if (searchKeyword()) {
+      <h2 class="text-xl font-bold text-gray-900">
+        Search Results for <span class="text-emerald-600">"{{ searchKeyword() }}"</span>
+      </h2>
+      <p class="text-sm text-gray-500 mt-1">We found {{ products().length }} products for you</p>
+    } @else {
+      <h2 class="text-xl font-bold text-gray-900">All Products</h2>
+      <p class="text-sm text-gray-500 mt-1">{{ products().length }} products found</p>
+    }
+  </div>
+
+  <!-- Main Layout -->
+  <div class="container pb-12">
+    <div class="flex gap-6">
+
+      <!-- Sidebar (Desktop) -->
+      <aside class="w-64 shrink-0 hidden lg:block">
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-4">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold text-gray-900 text-sm">Categories</h3>
+            @if (selectedCategories().length > 0) {
+              <span class="text-xs bg-emerald-500 text-white px-2 py-0.5 rounded-full font-bold">
+                {{ selectedCategories().length }} selected
+              </span>
+            }
+          </div>
+          <div class="space-y-2 max-h-52 overflow-y-auto pr-1">
+            @for (cat of categories(); track cat._id) {
+              <label class="flex items-center gap-2.5 cursor-pointer group">
+                <input type="checkbox"
+                  [checked]="isCategorySelected(cat._id)"
+                  (change)="toggleCategory(cat._id)"
+                  class="w-4 h-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"/>
+                <span class="text-sm text-gray-600 group-hover:text-emerald-600 transition-colors">{{ cat.name }}</span>
+              </label>
+            }
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 mb-4">
+          <h3 class="font-bold text-gray-900 text-sm mb-4">Price Range</h3>
+          <div class="flex gap-2 mb-3">
+            <div class="flex-1">
+              <label class="text-xs text-gray-400 mb-1 block">Min (EGP)</label>
+              <input type="number" [ngModel]="minPrice()" (ngModelChange)="minPrice.set($event)" (change)="search()"
+                placeholder="0" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500 transition-all"/>
+            </div>
+            <div class="flex-1">
+              <label class="text-xs text-gray-400 mb-1 block">Max (EGP)</label>
+              <input type="number" [ngModel]="maxPrice()" (ngModelChange)="maxPrice.set($event)" (change)="search()"
+                placeholder="No limit" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500 transition-all"/>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button (click)="setPriceRange(0, 500)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 500</button>
+            <button (click)="setPriceRange(0, 1000)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 1K</button>
+            <button (click)="setPriceRange(0, 5000)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 5K</button>
+            <button (click)="setPriceRange(0, 10000)" class="text-xs py-1.5 px-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 transition-colors">Under 10K</button>
+          </div>
+        </div>
+
+        <button (click)="clearAllFilters()"
+          class="w-full py-2.5 rounded-xl border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-colors">
+          Clear All Filters
+        </button>
+      </aside>
+
+      <!-- Products Area -->
+      <div class="flex-1 min-w-0">
+
+        <!-- Toolbar -->
+        <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+
+          <div class="flex items-center gap-3 flex-wrap">
+
+            <!-- Mobile Filter Button -->
+            <button (click)="isFilterOpen = true"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 text-sm font-semibold text-gray-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition-colors lg:hidden">
+              <i class="fas fa-filter text-xs"></i>
+              Filters
+              @if (selectedCategories().length > 0) {
+                <span class="bg-emerald-500 text-white text-xs px-1.5 py-0.5 rounded-full font-bold">
+                  {{ selectedCategories().length }}
+                </span>
+              }
+            </button>
+
+            <!-- Grid / List -->
+            <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+              <button (click)="viewMode.set('grid')"
+                class="px-3 py-2 transition-colors"
+                [class.bg-emerald-500]="viewMode() === 'grid'"
+                [class.text-white]="viewMode() === 'grid'"
+                [class.text-gray-500]="viewMode() !== 'grid'">
+                <i class="fas fa-th text-sm"></i>
+              </button>
+              <button (click)="viewMode.set('list')"
+                class="px-3 py-2 transition-colors"
+                [class.bg-emerald-500]="viewMode() === 'list'"
+                [class.text-white]="viewMode() === 'list'"
+                [class.text-gray-500]="viewMode() !== 'list'">
+                <i class="fas fa-list text-sm"></i>
+              </button>
+            </div>
+
+            <!-- Active Filters -->
+            @if (activeFilters.length > 0) {
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-xs text-gray-400 flex items-center gap-1">
+                  <i class="fas fa-filter text-[10px]"></i> Active:
+                </span>
+                @for (filter of activeFilters; track filter.categoryId) {
+                  <span class="flex items-center gap-1.5 bg-emerald-50 text-emerald-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-100">
+                    {{ filter.label }}
+                    <button (click)="removeCategory(filter.categoryId)" class="hover:text-red-500 transition-colors">
+                      <i class="fas fa-times text-[10px]"></i>
+                    </button>
+                  </span>
+                }
+                <button (click)="clearAllFilters()" class="text-xs text-gray-400 hover:text-red-500 transition-colors">
+                  Clear all
+                </button>
+              </div>
+            }
+          </div>
+
+          <!-- Sort -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-gray-400 hidden sm:block">Sort by:</span>
+            <select
+              [ngModel]="sortBy()"
+              (ngModelChange)="sortBy.set($event); onSortChange()"
+              class="border border-gray-200 rounded-lg px-3 py-1.5 text-sm outline-none focus:border-emerald-500 bg-white text-gray-600">
+              <option value="">Relevance</option>
+              <option value="price">Price: Low to High</option>
+              <option value="-price">Price: High to Low</option>
+              <option value="-ratingsAverage">Top Rated</option>
+              <option value="-createdAt">Newest</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Loading -->
+        @if (isLoading()) {
+          <div class="flex flex-col items-center justify-center py-24 text-center">
+            <div class="w-12 h-12 border-4 border-emerald-200 border-t-emerald-500 rounded-full animate-spin mb-4"></div>
+            <p class="text-gray-500 text-sm">Searching products...</p>
+          </div>
+        }
+
+        <!-- Products Grid -->
+        @else if (products().length > 0) {
+
+          @if (viewMode() === 'grid') {
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+              @for (product of products(); track product._id) {
+                <div class="relative bg-white border border-gray-100 rounded-2xl p-4 transition-all duration-300 group hover:border-gray-200 hover:shadow-md">
+
+                  @if (product.priceAfterDiscount) {
+                    <span class="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded z-10">
+                      -{{ getDiscount(product.price, product.priceAfterDiscount) }}%
+                    </span>
+                  }
+
+                  <div class="relative overflow-hidden rounded-xl bg-gray-50 mb-4 aspect-square flex items-center justify-center">
+                    <img [src]="product.imageCover" [alt]="product.title"
+                      class="w-4/5 h-4/5 object-contain transition-transform duration-300 group-hover:scale-105"/>
+                    <div class="absolute top-2 right-2 flex flex-col gap-2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <button (click)="addToWishList(product._id)"
+                        class="w-8 h-8 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-400 text-xs hover:bg-red-500 hover:text-white hover:border-red-500 transition-all">
+                        <i class="far fa-heart"></i>
+                      </button>
+                      <button [routerLink]="['/details', product._id, product.slug]"
+                        class="w-8 h-8 bg-white border border-gray-100 rounded-full flex items-center justify-center text-gray-500 text-xs hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all">
+                        <i class="far fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <p class="text-[11px] uppercase tracking-widest text-gray-400 truncate">{{ product.category.name }}</p>
+                    <h3 class="text-sm font-medium text-slate-800 leading-snug line-clamp-2 min-h-[2.6rem] hover:text-emerald-600 cursor-pointer transition-colors">{{ product.title }}</h3>
+                    <div class="flex items-center gap-1">
+                      <div class="flex text-amber-400 text-xs gap-px">
+                        @for (star of getStars(product.ratingsAverage); track $index) {
+                          <i [class]="star"></i>
+                        }
+                      </div>
+                      <span class="text-[11px] text-gray-400">{{ product.ratingsAverage }} ({{ product.ratingsQuantity }})</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-1.5">
+                      <span>
+                        @if (product.priceAfterDiscount) {
+                          <p class="text-base font-bold text-gray-800">{{ product.priceAfterDiscount | number }} EGP</p>
+                          <p class="text-xs text-gray-400 line-through">{{ product.price | number }} EGP</p>
+                        } @else {
+                          <p class="text-base font-bold text-gray-800">{{ product.price | number }} EGP</p>
+                        }
+                      </span>
+                      <button (click)="addToCart(product.id)"
+                        class="w-9 h-9 cursor-pointer bg-emerald-600 text-white rounded-lg flex items-center justify-center hover:bg-emerald-700 active:scale-95 transition-all shadow-sm">
+                        <i class="fas fa-plus text-xs"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+
+          @if (viewMode() === 'list') {
+            <div class="flex flex-col gap-3">
+              @for (product of products(); track product._id) {
+                <div class="bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-4 hover:shadow-md transition-all group">
+                  <div class="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
+                    <img [src]="product.imageCover" [alt]="product.title"
+                      class="w-4/5 h-4/5 object-contain group-hover:scale-105 transition-transform"/>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-[11px] uppercase tracking-widest text-gray-400">{{ product.category.name }}</p>
+                    <h3 class="text-sm font-semibold text-gray-800 mt-0.5 line-clamp-1">{{ product.title }}</h3>
+                    <div class="flex items-center gap-1 mt-1">
+                      <div class="flex text-amber-400 text-xs gap-px">
+                        @for (star of getStars(product.ratingsAverage); track $index) {
+                          <i [class]="star"></i>
+                        }
+                      </div>
+                      <span class="text-[11px] text-gray-400">({{ product.ratingsQuantity }})</span>
+                    </div>
+                    @if (product.priceAfterDiscount) {
+                      <p class="font-bold text-gray-800 mt-1">{{ product.priceAfterDiscount | number }} EGP</p>
+                    } @else {
+                      <p class="font-bold text-gray-800 mt-1">{{ product.price | number }} EGP</p>
+                    }
+                  </div>
+                  <div class="flex flex-col sm:flex-row items-center gap-2 shrink-0">
+                    <button (click)="addToWishList(product._id)"
+                      class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-red-50 hover:text-red-500 hover:border-red-200 transition-all">
+                      <i class="far fa-heart text-sm"></i>
+                    </button>
+                    <button [routerLink]="['/details', product._id, product.slug]"
+                      class="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition-all">
+                      <i class="far fa-eye text-sm"></i>
+                    </button>
+                    <button (click)="addToCart(product.id)"
+                      class="w-9 h-9 bg-emerald-600 text-white rounded-lg flex items-center justify-center hover:bg-emerald-700 active:scale-95 transition-all">
+                      <i class="fas fa-plus text-xs"></i>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        }
+
+        <!-- Empty State -->
+        @else if (!isLoading()) {
+          <div class="flex flex-col items-center justify-center py-24 text-center">
+            <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+              <i class="fas fa-search text-4xl text-gray-300"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">No Products Found</h3>
+            <p class="text-gray-500 text-sm mb-6">Try adjusting your search or filters</p>
+            <button (click)="clearAllFilters()"
+              class="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-2.5 rounded-xl transition-colors text-sm">
+              Clear Filters
+            </button>
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
+</div>

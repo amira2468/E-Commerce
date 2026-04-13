@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CategoriesService } from '../../../core/services/categories.service';
 import { Categories } from '../../../core/models/categories.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sub-categories',
-  imports: [RouterLink],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './sub-categories.component.html',
   styleUrl: './sub-categories.component.css',
 })
@@ -34,7 +35,7 @@ export class SubCategoriesComponent implements OnInit {
       },
     error: (err) => {
       console.log(err);
-      this.isLoading.set(false); 
+      this.isLoading.set(false);
     }
     });
   }
